@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Storitve</h1>
+{% for service in services %}
+    <div class="service">
+        <h2>{{ service.naslov }}</h2>
+        <p>{{ service.opis }}</p>
+        <p>Cena: {{ service.cena }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

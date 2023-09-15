@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Kontakt</h1>
+<h2>{{ kontakt.ime_podjetja }}</h2>
+<p>Address: {{ kontakt.naslov }}</p>
+<p>Phone: {{ kontakt.telefon }}</p>
+<div class="google-maps">
+    <!-- Embed the Google Maps iframe here -->
+    {{ kontakt.google_maps_embed | safe }}
+</div>
+{% endblock %}
