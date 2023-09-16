@@ -16,24 +16,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                    <li class="nav-item {% if active_page == 'storitve' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'storitve' %}">Storitve</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% if active_page == 'termini' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'termini' %}">Termini</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% if active_page == 'galerija' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'galerija' %}">Galerija</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% if active_page == 'priporocila' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'priporocila' %}">Priporočila</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% if active_page == 'kontakt' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'kontakt' %}">Kontakt</a>
                     </li>
                 </ul>
             </div>
         </nav>
+        
     </header>
     
     <main>
