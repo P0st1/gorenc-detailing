@@ -1,12 +1,27 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h1>Kontakt</h1>
-<h2>{{ kontakt.ime_podjetja }}</h2>
-<p>Address: {{ kontakt.naslov }}</p>
-<p>Phone: {{ kontakt.telefon }}</p>
-<div class="google-maps">
-    <!-- Embed the Google Maps iframe here -->
-    {{ kontakt.google_maps_embed | safe }}
+{% load static %}
+<div class="kontakt-container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Business card section on the left -->
+            <div class="business-card">
+                <img src="{% static 'pictures/logo.jpg' %}" alt="Company Image" class="img-fluid">
+                <h2 class="mb-3">{{ kontakt.ime_podjetja }}</h2>
+                <p class="lead">Naslov: {{ kontakt.naslov }}</p>
+                <p class="lead">Telefonska številka: {{ kontakt.telefon }}</p>
+                <p class="lead">Email: {{ kontakt.email }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Google Maps section on the right -->
+            <div class="google-maps-responsive">
+                <!-- Embed the Google Maps iframe here -->
+                {{ kontakt.google_maps_embed | safe }}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
+
+

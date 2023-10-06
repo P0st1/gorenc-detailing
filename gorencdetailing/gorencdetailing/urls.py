@@ -17,13 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from detailing import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('gorenc-detailing/', views.domaca_stran_view, name='domaca_stran'),
     path('storitve/', views.storitve_view, name='storitve'),
     path('priporocila/', views.priporocila_view, name='priporocila'),
     path('termini/', views.termini_view, name='termini'),
-    path('galerija/', views.galerija_view, name='galerija'),
+    path('galerija/', views.avto_slideshow, name='galerija'),
     path('kontakt/', views.kontakt_view, name='kontakt'),
+    path('kontakt-obrazec/', views.kontakt_obrazec_view, name='kontakt_obrazec'),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -25,14 +25,21 @@ class Termini(models.Model):
 
     def __str__(self):
         return f"Termin za {self.stranka_ime}"
-    
-class Galerija(models.Model):
-    naslov = models.CharField(max_length=100)
-    slika = models.ImageField(upload_to='\galerija-slik')
-    opis = models.TextField(blank=True)
 
+class Avto(models.Model):
+    znamka = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+    opis = models.TextField()
+    
     def __str__(self):
-        return self.naslov
+        return f"{self.znamka} {self.model}"
+
+class AvtoSlike(models.Model):
+    avto = models.ForeignKey(Avto, on_delete=models.CASCADE) 
+    slika = models.ImageField(upload_to='galerija_slik')
+    
+    def __str__(self):
+        return self.slika.name
     
 class Kontakt(models.Model):
     ime_podjetja = models.CharField(max_length=100, default='Gorenc Detailing')
@@ -43,3 +50,14 @@ class Kontakt(models.Model):
 
     def __str__(self):
         return self.ime_podjetja
+    
+class KontaktStranka(models.Model):
+    ime = models.CharField(max_length=100)
+    email = models.EmailField()
+    telefonska_stevilka = models.CharField(max_length=15)
+    vas_avto = models.CharField(max_length=100)
+    sporocilo = models.TextField()
+
+
+
+
