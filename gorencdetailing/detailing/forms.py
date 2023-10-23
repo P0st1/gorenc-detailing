@@ -1,9 +1,14 @@
 from django import forms
 from django.forms import inlineformset_factory
-from .models import KontaktStranka, Avto
+from .models import KontaktStranka, Avto, Storitev
 
 class KontaktObrazec(forms.ModelForm):
     class Meta:
         model = KontaktStranka
-        fields = ['ime', 'email', 'telefonska_stevilka', 'vas_avto', 'sporocilo']
+        fields = '__all__'
+
+    storitev = forms.ModelMultipleChoiceField(
+        queryset=Storitev.objects.all(),
+        widget=forms.CheckboxSelectMultiple,  
+    )
 

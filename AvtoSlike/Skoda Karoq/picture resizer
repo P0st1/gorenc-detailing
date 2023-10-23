@@ -1,0 +1,11 @@
+from PIL import Image
+
+target_size = (400, 267)  # Adjust to your desired size
+
+def resize_image(input_path, output_path):
+    img = Image.open(input_path)
+    img = img.resize(target_size)
+    img.save(output_path)
+
+# Example usage:
+resize_image("input.jpg", "output.jpg")

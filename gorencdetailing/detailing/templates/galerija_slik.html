@@ -7,7 +7,7 @@
     <div class="col-md-4 mb-4">
       <div class="car-gallery">
         <h2>{{ avto.znamka }} {{ avto.model }}</h2>
-        <div id="carousel-{{ avto.id }}" class="carousel slide" data-ride="carousel" data-interval="10000">
+        <div id="carousel-{{ avto.id }}" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             {% for slika in avto.avtoslike_set.all %}
             <li data-target="#carousel-{{ avto.id }}" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
@@ -16,12 +16,14 @@
           <div class="carousel-inner">
             {% for slika in avto.avtoslike_set.all %}
             <div class="carousel-item{% if forloop.first %} active{% endif %}">
-              <div class="img-wrapper">
-                <img src="{{ slika.slika.url }}" alt="{{ avto.znamka }} {{ avto.model }}" class="img-fluid">
-              </div>              
-              <div class="carousel-caption">
-                
-              </div>
+              <a href="{{ slika.slika.url }}" data-fancybox="gallery-{{ avto.id }}" data-caption="{{ avto.opis }}">
+                <div class="img-wrapper">
+                  <img src="{{ slika.slika.url }}" alt="{{ avto.znamka }} {{ avto.model }}" class="img-fluid">
+                </div>              
+                <div class="carousel-caption">
+                  <!-- You can add any additional information or description here -->
+                </div>
+              </a>
             </div>
             {% endfor %}
           </div>
@@ -39,4 +41,21 @@
     {% endfor %}
   </div>
 </div>
+
+{% endblock %}
+{% block extrascripts %}
+
+<script>
+  $(document).ready(function() {
+    $("[data-fancybox^='gallery']").fancybox({
+      // Options for FancyBox
+      loop: true, // Enable looping through images
+      toolbar: "auto", // Display toolbar automatically
+      buttons: ["slideShow", "fullScreen", "thumbs", "close"], // Customize toolbar buttons
+      animationEffect: "fade", // Choose the animation effect (e.g., "fade", "zoom", "zoom-in-out")
+      transitionEffect: "fade", // Choose the transition effect (e.g., "fade", "slide", "zoom-in-out")
+      idleTime: 5000, // Set the time (in ms) before the toolbar disappears
+    });
+  });
+</script>
 {% endblock %}

@@ -19,6 +19,15 @@
                 <!-- Embed the Google Maps iframe here -->
                 {{ kontakt.google_maps_embed | safe }}
             </div>
+            <div class="delovni-cas">
+                <h3 class="mb-3">Delovni čas</h3>
+                <p><span class="delovni-cas-text">Ponedeljek:</span> {{ kontakt.delovni_cas }}</p>
+                <p><span class="delovni-cas-text">Torek:</span> {{ kontakt.delovni_cas }}</p>
+                <p><span class="delovni-cas-text">Sreda:</span> {{ kontakt.delovni_cas }}</p>
+                <p><span class="delovni-cas-text">Četrtek:</span> {{ kontakt.delovni_cas }}</p>
+                <p><span class="delovni-cas-text">Petek:</span> {{ kontakt.delovni_cas }}</p>
+                <p><span class="delovni-cas-text">Sobota in nedelja:</span> Zaprto </p>
+            </div>
         </div>
     </div>
 </div>

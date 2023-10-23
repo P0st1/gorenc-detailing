@@ -1,20 +1,107 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="container">
-    <h1>Storitve</h1>
+<style>
+  .naslovcek {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .storitve-container {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(168, 167, 167);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid #2c2b2b;
+    border-radius: 5px;
+  }
+
+  .service-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: #CDD1CF;
+    animation: bounceIn 1s ease both;
+  }
+
+  .service-item:hover {
+    background-color: #EAECEB;
+    transform: scale(1.02);
+  }
+
+  .service-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .service-details {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s;
+  }
+
+  .service-price {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .expanded {
+    display: block;
+    max-height: 200px; /* Adjust to your desired maximum height */
+  }
+
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    80% {
+      transform: scale(0.95);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+</style>
+<div class="storitve-container">
+    <h1 class="naslovcek">Ponujamo vam naslednje storitve</h1>
     <div class="row">
-      {% for service in services %}
+        {% for storitev in storitve %}
         <div class="col-md-4">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h2 class="card-title">{{ service.naslov }}</h2>
-              <p class="card-text">{{ service.opis }}</p>
-              <p class="card-text"><strong>Cena:</strong> {{ service.cena }}</p>
+            <div class="service-item">
+                <h5 class="service-title">{{ storitev.naslov }}</h5>
+                <div class="service-details">
+                    <p class="service-description">{{ storitev.opis }}</p>
+                    <p class="service-price">Cena: {{ storitev.cena }} €</p>
+                </div>
             </div>
-          </div>
         </div>
-      {% endfor %}
+        {% if forloop.counter|divisibleby:3 %}
     </div>
-  </div>
+    <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
+    <a href="{% url 'termini' %}" class="btn btn-secondary btn-lg"><strong>Izberite si termin</strong></a>
+</div>
+{% endblock %}
+
+{% block extrascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('.service-item').click(function () {
+        $(this).find('.service-details').toggleClass('expanded');
+    });
+});
+</script>
 {% endblock %}

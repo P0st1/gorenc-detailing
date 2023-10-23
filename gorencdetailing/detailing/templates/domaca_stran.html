@@ -1,10 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for message in messages %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+{% load static %}
+<style>
+@keyframes dropIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.container-fluid {
+    animation: dropIn 1s ease-out; /* Apply the animation to the container */
+}
 
+
+</style>
+{% for message in messages %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 text-center mx-auto my-5">
+      <img src="{% static 'pictures/logo.jpg' %}" alt="Gorenc Detailing Logo" class="img-fluid mb-4 img-thumbnail" />
+      <h1 class="display-4 text-white "><strong>Welcome to Gorenc Detailing</strong></h1>
+      <p class="lead text-white"><strong>Zaupanja vreden partner za vzdrževanje vašega vozila</strong></p>
+      <p class="text-center text-white"><em>Ponosni smo, da vam lahko nudimo vrhunske storitve in predani temu, da vaše vozilo dobi najboljšo oskrbo.</em></p>
+      <p class="text-center text-white"><em>Raziščite našo ponudbo storitev, rezervirajte termin in postanite del naše skupnosti zadovoljnih strank, ki nam zaupajo svoja vozila.</em></p>
+      <a href="{% url 'storitve' %}" class="btn btn-secondary btn-lg"><strong>Raziščite naše storitve</strong></a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extrascripts %}
 {% endblock %}

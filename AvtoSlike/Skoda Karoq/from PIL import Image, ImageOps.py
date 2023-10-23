@@ -2,14 +2,14 @@ from PIL import Image, ImageOps
 import os
 
 # Set the desired width and height for your images
-target_width = 1080
-target_height = 1350  # Choose the maximum dimensions
+target_width = 400
+target_height = 267  # Choose the maximum dimensions
 
 # Set the directory where your images are located
-image_dir = r'C:\Users\38641\OneDrive\Namizje\Development\Gorenc Detailing\gorenc-detailing\AvtoSlike\Audi A4'
+image_dir = r'C:\Users\38641\OneDrive\Namizje\Development\Gorenc Detailing\gorenc-detailing\Slike'
 
 # Output directory for resized images
-output_dir = r'C:\Users\38641\OneDrive\Namizje\Development\Gorenc Detailing\gorenc-detailing\AvtoSlike\Audi A4\resized'
+output_dir = r'C:\Users\38641\OneDrive\Namizje\Development\Gorenc Detailing\gorenc-detailing\Slike\resized'
 
 # Ensure the output directory exists
 if not os.path.exists(output_dir):

@@ -47,6 +47,7 @@ class Kontakt(models.Model):
     email = models.EmailField()
     telefon = models.CharField(max_length=15)
     google_maps_embed = models.TextField(default='<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.12345!2d-74.12345!3d40.12345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDAwJzUwLjUiTiA3NMKwMzMnMjMuMyJX!5e0!3m2!1sen!2sus!4v1234567890!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>')
+    delovni_cas = models.CharField(max_length=200)
 
     def __str__(self):
         return self.ime_podjetja
@@ -57,6 +58,7 @@ class KontaktStranka(models.Model):
     telefonska_stevilka = models.CharField(max_length=15)
     vas_avto = models.CharField(max_length=100)
     sporocilo = models.TextField()
+    storitev = models.ManyToManyField(Storitev)
 
 
 
