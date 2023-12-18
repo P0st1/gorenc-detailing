@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<style>
+  .thank-you-container {
+    text-align: center;
+    border: 2px solid #615e5e;
+    padding: 20px;
+    border-radius: 10px;
+    background-image: url("/static/Slike/11.png");
+}
+
+
+.btn-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Add animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to thank-you-container */
+.thank-you-container {
+    animation: fadeIn 1.5s;
+}
+
+</style>
+<div class="container text-center">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="thank-you-container">
+            <p class="h2">Hvala za zaupanje, <u>{{ ime }}</u>!</p>
+            <p class="h3 lead">Kontaktirali vas bomo v kratkem.</p>
+            <a href="{% url 'domaca_stran' %}" class="btn btn-dark">Domov</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+
+

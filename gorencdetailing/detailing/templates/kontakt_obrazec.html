@@ -7,33 +7,57 @@
             {{ message }}
         </div>
     {% endfor %}
-<form method="post" class="container mt-5">
+<form action="{% url 'appointments' %}" method="post" class="container mt-5">
   {% csrf_token %}
-  <div class="form-group">
-    <label for="{{ obrazec.ime.id_for_label }}">Ime in priimek:</label>
-    {{ obrazec.ime }}
+  <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="{{ obrazec.ime.id_for_label }}">Ime in priimek:</label>
+              <input type="text" name="ime" id="{{ obrazec.ime.id_for_label }}" value="{{ obrazec.ime.value }}">
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="{{ obrazec.email.id_for_label }}">Vaša e-pošta:</label>
+              <input type="email" name="email" id="{{ obrazec.email.id_for_label }}" value="{{ obrazec.email.value }}">
+          </div>
+      </div>
   </div>
-  <div class="form-group">
-    <label for="{{ obrazec.email.id_for_label }}">Vaša e-pošta:</label>
-    {{ obrazec.email }}
+  <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="{{ obrazec.telefon_for_label }}">Telefonska številka:</label>
+              <input type="text" name="telefon" id="{{ obrazec.telefon_for_label }}" value="{{ obrazec.telefonska_stevilka.value }}">
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="{{ obrazec.vas_avto.id_for_label }}">Znamka in model vozila:</label>
+              <input type="text" name="avto" id="{{ obrazec.vas_avto.id_for_label }}" value="{{ obrazec.vas_avto.value }}">
+          </div>
+      </div>
   </div>
-  <div class="form-group">
-    <label for="{{ obrazec.telefon_for_label }}">Telefonska številka:</label>
-    {{ obrazec.telefonska_stevilka }}
+  <div class="row">
+      <div class="col-md-12">
+          <div class="form-group">
+              <label for="{{ obrazec.storitev.id_for_label }}">Storitve, ki bi jih želeli:</label>
+              {{ obrazec.storitev }}
+          </div>
+      </div>
   </div>
-  <div class="form-group">
-    <label for="{{ obrazec.vas_avto.id_for_label }}">Znamka in model vozila:</label>
-    {{ obrazec.vas_avto }}
+  <div class="row">
+      <div class="col-md-12">
+          <div class="form-group">
+              <label for="{{ obrazec.sporocilo.id_for_label }}">Dodatne želje:</label>
+              <textarea name="sporocilo" id="{{ obrazec.sporocilo.id_for_label }}">{{ obrazec.sporocilo.value }}</textarea>
+          </div>
+      </div>
   </div>
-  <div class="form-group">
-    <label for="{{ obrazec.storitev.id_for_label }}">Storitve, ki bi jih želeli:</label>
-    {{ obrazec.storitev }}
-</div>
-  <div class="form-group">
-    <label for="{{ obrazec.sporocilo.id_for_label }}">Dodatne želje:</label>
-    {{ obrazec.sporocilo }}
+  <div class="row">
+      <div class="col-md-12">
+          <button type="submit" class="btn btn-primary">Pošlji</button>
+      </div>
   </div>
-  <button type="submit" class="btn btn-primary">Pošlji</button>
 </form>
 </div>
 {% endblock %}

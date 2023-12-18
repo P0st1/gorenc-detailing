@@ -24,11 +24,10 @@ urlpatterns = [
     path('gorenc-detailing/', views.domaca_stran_view, name='domaca_stran'),
     path('storitve/', views.storitve_view, name='storitve'),
     path('priporocila/', views.priporocila_view, name='priporocila'),
-    path('termini/', views.termini_view, name='termini'),
     path('galerija/', views.avto_slideshow, name='galerija'),
     path('kontakt/', views.kontakt_view, name='kontakt'),
     path('kontakt-obrazec/', views.kontakt_obrazec_view, name='kontakt_obrazec'),
-
+    path('appointments/', views.appointments_view, name='appointments'),
 ]
 
 if settings.DEBUG:

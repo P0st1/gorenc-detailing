@@ -2,106 +2,250 @@
 
 {% block content %}
 <style>
-  .naslovcek {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-  }
-
-  .storitve-container {
-    text-align: center;
-    padding: 20px;
-    background-color: rgb(168, 167, 167);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 2px solid #2c2b2b;
-    border-radius: 5px;
-  }
-
-  .service-item {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    background-color: #CDD1CF;
-    animation: bounceIn 1s ease both;
-  }
-
-  .service-item:hover {
-    background-color: #EAECEB;
-    transform: scale(1.02);
-  }
-
-  .service-title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  .service-details {
-    display: none;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s;
-  }
-
-  .service-price {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .expanded {
-    display: block;
-    max-height: 200px; /* Adjust to your desired maximum height */
-  }
-
-  @keyframes bounceIn {
-    0% {
-      transform: scale(0.5);
-      opacity: 0;
+    .service-container {
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
     }
-    60% {
-      transform: scale(1.05);
-      opacity: 1;
+    
+    .service-container .icon {
+      margin-top: 5%;
+      font-size: 38px;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
     }
-    80% {
-      transform: scale(0.95);
+    
+    .service-container .number-icon .icon-2 {
+      height: 70px;
+      width: 70px;
+      line-height: 80px;
+      border-radius: 64% 36% 55% 45% / 76% 72% 28% 24% !important;
+      border-color: #f89d36 !important;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
     }
-    100% {
-      transform: scale(1);
+    
+    .service-container .number-icon .icon-2 i {
+      font-size: 30px;
     }
-  }
+    
+    .service-container .number-icon .number {
+      position: absolute;
+      top: 0;
+      right: 70px;
+      left: 0;
+      height: 35px;
+      width: 35px;
+      margin: 0 auto;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    
+    .service-container .number-icon .number span {
+      line-height: 30px;
+    }
+    
+    .service-container .content .number {
+      font-size: 40px;
+      color: #dee2e6;
+    }
+    
+    .service-container .content .title {
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    
+    .service-container.hover-bg {
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    
+    .service-container.hover-bg .smooth-icon {
+      position: absolute;
+      bottom: -40px;
+      right: -20px;
+      font-size: 60px;
+      color: #f8f9fa;
+      -webkit-transition: all 0.8s ease;
+      transition: all 0.8s ease;
+    }
+    
+    .service-container.hover-bg:hover {
+      background-color: #f89d36;
+    }
+    
+    .service-container.hover-bg:hover .content .title {
+      color: #ffffff !important;
+    }
+    
+    .service-container.hover-bg:hover .content .serv-pera {
+      color: #fafafb !important;
+    }
+    
+    .service-container.hover-bg:hover .smooth-icon {
+      font-size: 100px;
+      opacity: 0.2;
+      bottom: -20px;
+      right: 10px;
+    }
+    
+    .service-container:hover {
+      background-color: #ffffff;
+      -webkit-box-shadow: 0 10px 25px rgba(47, 60, 78, 0.15) !important;
+              box-shadow: 0 10px 25px rgba(47, 60, 78, 0.15) !important;
+    }
+    
+    .service-container:hover .icon {
+      color: #f89d36;
+      -webkit-animation: mover 1s infinite alternate;
+              animation: mover 1s infinite alternate;
+    }
+    
+    .service-container:hover .number-icon .icon-2 {
+      background-color: #f89d36;
+      border-radius: 50% !important;
+    }
+    
+    .service-container:hover .number-icon .icon-2 i {
+      color: #ffffff !important;
+    }
+    
+    .service-container:hover .number-icon .number {
+      color: #ffffff;
+      background: #f89d36 !important;
+      border-color: #ffffff !important;
+    }
+    
+    .service-container:hover .content .title {
+      color: #f89d36;
+    }
+    
+    .service-container a:hover,
+    .service-container a .title:hover {
+      color: #f89d36 !important;
+    }
+    
+    @-webkit-keyframes mover {
+      0% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        -webkit-transform: translateY(-15px);
+                transform: translateY(-15px);
+      }
+    }
+    
+    @keyframes mover {
+      0% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        -webkit-transform: translateY(-15px);
+                transform: translateY(-15px);
+      }
+    }
+    
+    .service-wrapper {
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    
+    .service-wrapper .icon {
+      width: 60px;
+      height: 60px;
+      line-height: 45px;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    
+    .service-wrapper .content .title {
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+      font-weight: 500;
+    }
+    
+    .service-wrapper .big-icon {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      opacity: 0.05;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    
+    .service-wrapper:hover {
+      -webkit-box-shadow: 0 10px 25px rgba(47, 60, 78, 0.15) !important;
+              box-shadow: 0 10px 25px rgba(47, 60, 78, 0.15) !important;
+      background: #ffffff;
+      -webkit-transform: translateY(-8px);
+              transform: translateY(-8px);
+      border-color: transparent !important;
+    }
+    
+    .service-wrapper:hover .icon {
+      background: #2d323b !important;
+      color: #ffffff !important;
+    }
+    
+    .service-wrapper:hover .big-icon {
+      z-index: -1;
+      opacity: 0.1;
+      font-size: 160px;
+    }
+    
+    .text-custom {
+        color: #525a66 !important;
+    }
+    
+    .logo-pos {
+        display: inline-block;
+        height: 1em;
+        vertical-align: -0.125em;
+        font-size: inherit;
+        fill: var(--uim-color, currentColor);
+    }
+    
 </style>
-<div class="storitve-container">
-    <h1 class="naslovcek">Ponujamo vam naslednje storitve</h1>
-    <div class="row">
-        {% for storitev in storitve %}
-        <div class="col-md-4">
-            <div class="service-item">
-                <h5 class="service-title">{{ storitev.naslov }}</h5>
-                <div class="service-details">
-                    <p class="service-description">{{ storitev.opis }}</p>
-                    <p class="service-price">Cena: {{ storitev.cena }} €</p>
+<div class="container"  style="background-color: rgba(0, 0, 0, 0.3);">
+  <div class="row">
+    {% for storitev in storitve %}
+    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+        <div class="card service-wrapper rounded border-0 shadow p-4">
+          <div class="icon text-center text-custom h1 shadow rounded bg-white">
+            <i class="logo-pos {{ storitev.icon_class }}"></i>
+        </div>
+            <div class="content mt-4">
+                <h5 class="title">{{ storitev.naslov }}</h5>
+                <p class="text-muted mt-3 mb-0">{{ storitev.opis }}</p>
+                <div class="mt-3">
+                    <span class="text-custom">{{ storitev.cena }} € </span>
                 </div>
             </div>
+            <div class="big-icon h1 text-custom">
+              <i class="logo-pos {{ storitev.icon_class }}"></i>            
+            </div>
         </div>
-        {% if forloop.counter|divisibleby:3 %}
-    </div>
-    <div class="row">
-        {% endif %}
-        {% endfor %}
-    </div>
-    <a href="{% url 'termini' %}" class="btn btn-secondary btn-lg"><strong>Izberite si termin</strong></a>
+      </div><!--end col-->
+      {% endfor %}
+      <a href="{% url 'kontakt_obrazec' %}" class="btn btn-dark btn-lg mt-4 mb-3 mx-auto"><strong>Naročite se zdaj!</strong></a>
+  </div><!--end row-->
 </div>
 {% endblock %}
 
 {% block extrascripts %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function () {
-    $('.service-item').click(function () {
-        $(this).find('.service-details').toggleClass('expanded');
-    });
-});
+  $(document).ready(function() {
+    // Get the maximum height among all service wrappers
+    var maxHeight = Math.max.apply(
+      null,
+      $(".service-wrapper").map(function() {
+        return $(this).height();
+      }).get()
+    );
+
+    // Set the height of all service wrappers to the maximum height
+    $(".service-wrapper").height(maxHeight);
+  });
 </script>
 {% endblock %}

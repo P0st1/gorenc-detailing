@@ -6,7 +6,7 @@
     {% for avto in avti %}
     <div class="col-md-4 mb-4">
       <div class="car-gallery">
-        <h2>{{ avto.znamka }} {{ avto.model }}</h2>
+        <h2 class="font-weight-bold text-dark">{{ avto.znamka }} {{ avto.model }}</h2>
         <div id="carousel-{{ avto.id }}" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             {% for slika in avto.avtoslike_set.all %}
@@ -41,8 +41,32 @@
     {% endfor %}
   </div>
 </div>
+<div class="galerija2-container bg-dark text-light p-4">
+  <div class="text-center">
+      <h1 class="display-4">Sodelujemo tudi z avto hišo CAR LINE!</h1>
+  </div>
 
+  <!-- CarLineSlike Carousel -->
+  <div id="carouselCarLine" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+          {% for car_line_slika in car_line_slike %}
+          <div class="carousel-item{% if forloop.first %} active{% endif %}">
+            <img src="{{ car_line_slika.car_line_slika.url }}" class="d-block w-100 img-fluid" style="max-width: 50%; height:auto">
+          </div>
+          {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselCarLine" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselCarLine" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </a>
+  </div>
+</div>
 {% endblock %}
+
 {% block extrascripts %}
 
 <script>

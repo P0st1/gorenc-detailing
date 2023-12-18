@@ -1,6 +1,5 @@
 from django import forms
-from django.forms import inlineformset_factory
-from .models import KontaktStranka, Avto, Storitev
+from .models import KontaktStranka, Storitev
 
 class KontaktObrazec(forms.ModelForm):
     class Meta:
@@ -9,6 +8,6 @@ class KontaktObrazec(forms.ModelForm):
 
     storitev = forms.ModelMultipleChoiceField(
         queryset=Storitev.objects.all(),
-        widget=forms.CheckboxSelectMultiple,  
+        widget=forms.Select,
     )
 
