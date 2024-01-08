@@ -7,7 +7,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
-        {% load static %}  
+        {% load tz %}
+        {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
         <title>Gorenc Detailing</title>
     </head>
@@ -45,25 +46,25 @@
         {% endblock %}
     </main>
     
-    <footer class="bg-dark text-white py-5">
+    <footer class="bg-dark text-white pt-5 pb-1">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-4 footer-links">
                     <h5>Hitre povezave</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Domov</a></li>
+                        <li><a href="{% url 'domaca_stran' %}">Domov</a></li>
                         <li><a href="{% url 'storitve' %}">Storitve</a></li>
                         <li><a href="{% url 'kontakt' %}">Kontakt</a></li>
                         <li><a href="{% url 'galerija' %}">Galerija</a></li>
                         <li><a href="{% url 'priporocila' %}">Priporočila</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4 footer-links">
-                    <h5>Poveži se z nami!</h5>
+                <div class="col-lg-3 col-md-6 mb-4 footer-social-links">
+                    <h5>Poveži se z nami</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        <li><a href="https://www.instagram.com/gorenc.detailing/"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="https://www.tiktok.com/@gorenc.detailing"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                        <li><a href="#" class="footer-fb"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/gorenc.detailing/" class="footer-ig"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@gorenc.detailing" class="footer-tt"><i class="fab fa-tiktok"></i> TikTok</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4 footer-links">
@@ -74,7 +75,20 @@
                         <li>8232</li>
                     </ul>
                 </div>
-                
+                <div class="col-lg-3 col-md-6 mb-4 footer-links">
+                    <h5>Kontakt</h5>
+                    <ul class="list-unstyled">
+                        <li>{{ kontakt.telefon }}</li>
+                        <li><a href="mailto:{{ kontakt.email }}">{{ kontakt.email }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mt-4">
+                    <p class="text-muted mb-0">
+                        &copy; {% now "Y" %} Gorenc Detailing S.P. All rights reserved.
+                    </p>
+                </div>
             </div>
         </div>
     </footer>

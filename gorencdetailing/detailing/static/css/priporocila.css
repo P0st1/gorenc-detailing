@@ -1,11 +1,22 @@
 /* PRIPOROCILA.HTML */
+.row {
+  display: flex;
+}
+
+.col-md-6 {
+  display: flex;
+  flex-direction: column;
+}
+
 .priporocila-container {
   padding: 2rem;
   background: rgba(0, 0, 0, 0.8); 
   color: #fff;
   border: 1px solid #f09c2f;
+  box-shadow: 0 0 10px #f09c2f;
   border-radius: 8px;
 }
+
 .stats-container {
   margin-top: 20px;
   font-size: 16px;
@@ -22,9 +33,8 @@
   color: #e08d21; /
 }
 
-/* Form Styles */
 .new-priporocilo-form {
-  background: #333; 
+  background-color: rgba(82, 75, 67, 0.6); 
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
@@ -60,42 +70,7 @@
   display: block;
 }
 
-/* Carousel Styles */
-.carousel-inner {
-  position: relative;
-  overflow: hidden;
-  margin-top: 2rem;
-}
 
-.carousel-item {
-  transition: transform 0.5s ease-in-out;
-  opacity: 0; /* Hide all items by default */
-  display: none; /* Don't display non-active items */
-  height: auto;
-  margin: 15px;
-  align-items: center; /* Center content vertically */
-  justify-content: center;
-}
-
-.carousel-item.active {
-  display: block; /* Display the active item */
-  opacity: 1; /* Show the active item */
-}
-
-.testimonial {
-  background: #262626; 
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-left: 4px solid #e67e22; 
-  border-radius: 4px;
-  width: 80%;
-  justify-content: center;
-  align-items: center;
-}
-
-.testimonial h3 {
-  color: #e67e22; 
-}
 
 .rating .star {
   color: #5c5a59; 
@@ -104,37 +79,6 @@
 
 .rating .star.filled {
   color: #f39c12; 
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-size: 100%, 100%;
-  height: 3rem;
-  width: 3rem;
-  outline: none;
-  background-image: none;
-}
-.carousel-control-prev, .carousel-control-next {
-  width: 5%;
-}
-
-.carousel-control-prev-icon {
-  border: 1px solid #e67e22;
-  border-width: 0 3px 3px 0;
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-
-.carousel-control-next-icon {
-  border: 1px solid #e67e22;
-  border-width: 0 3px 3px 0;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  filter: brightness(1.1);
 }
 
 .rating {
@@ -147,18 +91,17 @@
   
 .star-rating {
   cursor: pointer;
-  font-size: 2rem; /* Size of the stars */
-  color: #ddd; /* Default star color */
+  font-size: 2rem; 
+  color: #ddd; 
   transition: color 0.2s; 
 }
 
-/* Hover effect */
 .star-rating:hover,
 .star-rating:hover ~ .star-rating,
 .star-rating-input:hover ~ .star-rating,
 .star-rating-input:checked ~ .star-rating:hover,
 .star-rating-input:checked ~ .star-rating:hover ~ .star-rating {
-  color: #e67e22; /* Highlight color for hovered stars */
+  color: #e67e22; 
 }
 
 /* Remove color for stars after the hovered one when not checked */
@@ -176,6 +119,67 @@
 .star-rating-input:checked ~ .star-rating ~ .star-rating-input:not(:checked) ~ .star-rating {
   color: #ddd;
 }
+
+/* Carousel Styles */
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rem;
+  padding: 0 8%;
+}
+
+.carousel-item {
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease;
+  display: none; 
+  align-items: center; 
+  justify-content: center;
+  opacity: 0;
+  height: auto;
+  margin: 15px;
+  backface-visibility: hidden;
+  perspective: 1000px; /* For 3D transformed elements */
+}
+
+.carousel-item.active {
+  display: block; 
+  opacity: 1; 
+}
+
+.testimonial {
+  background: #262626; 
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #e67e22; 
+  border-right: 4px solid #e67e22; 
+  border-radius: 6px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; 
+}
+
+
+.testimonial h3 {
+  color: #e67e22; 
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5)); 
+  width: 2%;
+  transition: opacity 0.3s ease;
+}
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1; 
+}
+
+/* Hover effect on testimonial */
+.testimonial:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-5px); 
+}
   
   /* Responsive Design */
   @media (max-width: 768px) {
@@ -189,5 +193,9 @@
   
     .testimonial {
       margin-bottom: 0.5rem;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+      filter: none; /* Remove shadow on smaller devices for cleaner look */
     }
   }

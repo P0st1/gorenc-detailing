@@ -19,7 +19,7 @@
         <input type="text" name="user_name" placeholder="Avtor" class="form-control" required>
         <textarea name="testimonial" placeholder="Vaše mnenje" class="form-control" required></textarea>
         <select name="type_of_service" id="serviceField" class="form-control" required>
-          <option value="" selected>-- Izberite storitev --</option>
+          <option value="" selected>-- Izberite storitev, ki smo jo vam nudili --</option>
           {% for storitev in storitve %}
           <option value="{{ storitev.id }}">{{ storitev.naslov }}</option>
           {% endfor %}
@@ -55,10 +55,6 @@
           </div>
           {% endfor %}
         </div>
-        <a class="carousel-control-prev" href="#priporocilaCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
         <a class="carousel-control-next" href="#priporocilaCarousel" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>

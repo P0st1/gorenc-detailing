@@ -12,6 +12,13 @@ body {
     min-height: 100vh; 
 }
 
+body {
+    background-image: url("/static/Slike/2.jpg"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 /* Ensure the main content grows to fill the available space */
 main {
     flex-grow: 1;
@@ -49,16 +56,15 @@ main {
 }
 
 .navbar-brand {
-    font-size: 28px; /* Increase font size */
-    font-weight: bold; /* Bold text */
-    color: #ff6600; /* Text color */
-    text-decoration: none; /* Remove underline */
+    font-size: 28px; 
+    font-weight: bold; 
+    color: #ff6600; 
+    text-decoration: none; 
     transition: color 0.3s;
-    margin-left: 10px; /* Smooth color transition */
+    margin-left: 10px; /
 }
 
 /* KONTAKT_OBRAZEC.HTML */
-/* Base Styles for the Form Container */
 #kontakt-form-container {
     max-width: 800px; 
     margin: 40px auto; 
@@ -77,11 +83,10 @@ main {
     box-shadow: 0 0 20px #f09c2f;
 }
 
-/* Handling focus on container */
 #kontakt-form-container:focus-within {
     box-shadow: 0 0 0 2px #f09c2f;
 }
-/* Style the labels */
+
 .form-group label {
     color: #fff;
     display: block; 
@@ -96,8 +101,7 @@ main {
 }
 .form-group select {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #f09c2f;
+    border: 1px solid #807465;
     border-radius: 4px;
     background-color: #333;
     color: #fff;
@@ -106,34 +110,34 @@ main {
     appearance: none; /* Remove default arrow */
     background-image: url('data:image/svg+xml;utf8,<svg fill="%23f09c2f" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom arrow */
     background-repeat: no-repeat;
-    background-position: right 16px center; /* Adjusted for padding */
+    background-position: right 16px center;
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
-}
+} 
 
-/* Ensure options are visible with a lighter background */
 .form-group select option {
-    background: #555; /* Lighter option background for contrast */
-    color: #fff; /* Option text color */
+    background: #333; 
+    color: #fff; 
 }
 
-/* Adjust the background and border on hover and focus for better visibility */
 .form-group select:hover,
 .form-group select:focus {
-    background-color: #444; /* Darker background on hover/focus */
-    border-color: #ffa500; /* Brighter orange border on hover/focus */
-    background-position: right 16px center; /* Maintain arrow position */
+    color: #fff;
+    background-color: #444; 
+    border-color: #ffa500; 
+    background-position: right 16px center; 
 }
-/* Style the input fields and textarea */
+
 form input[type="text"],
 form input[type="email"],
 form textarea,
-form select {
+form select
+ {
     width: 100%;
     padding: 12px;
-    border: 2px solid #333;
+    border: 1px solid #807465;
     border-radius: 5px;
-    background-color: #222;
+    background-color: #333;
     color: #fff;
     box-sizing: border-box;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -147,19 +151,16 @@ form select:focus {
     box-shadow: 0 0 5px #f09c2f;
 }
 
-/* Placeholder color and style */
 ::placeholder {
     color: #888;
     opacity: 1;
 }
 
-/* Styling Textarea */
 form textarea {
     height: 120px;
     resize: vertical;
 }
 
-/* Styling the Submit Button */
 form .btn-primary {
     background-color: #f09c2f;
     border-color: #f09c2f;
@@ -176,8 +177,6 @@ form .btn-primary:hover {
     transform: translateY(-3px);
 }
 
-
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     .col-md-6 {
         flex: 0 0 100%;
@@ -185,68 +184,70 @@ form .btn-primary:hover {
     }
 }
 
-
 /* Footer CSS */
 footer {
-    color: white; /* Text color */
-    padding: 30px 0; /* Adjust padding */
+    color: white; 
+    padding: 30px 0; 
     border-top: 2px solid #f09c2f;
 }
 
-/* Footer links */
-.footer-links ul {
+.footer-links ul,
+.footer-social-links ul {
     list-style: none;
     padding: 0;
 }
 
-.footer-links ul li {
-    margin-bottom: 10px; /* Adjust spacing between items */
+.footer-links ul li,
+.footer-social-links li {
+    margin-bottom: 10px; 
 }
 
-.footer-links h5 {
-    font-weight: bold; /* Bold titles */
-    font-size: 20px; /* Adjust title text size */
-    margin-bottom: 15px; /* Spacing between titles and list */
+.footer-links h5,
+.footer-social-links h5 {
+    font-weight: bold; 
+    font-size: 20px; 
+    margin-bottom: 15px; 
 }
 
-.footer-links a {
+.footer-links a,
+.footer-social-links a {
     text-decoration: none;
-    color: rgb(199, 192, 192); /* Link text color */
-    transition: color 0.3s; /* Smooth color transition */
+    color: rgb(199, 192, 192); 
+    transition: color 0.3s; 
 }
 
 .footer-links a:hover {
-    color: #ff6600; /* Link color on hover */
+    color: #f09c2f; 
 }
 
 .footer-links li {
     text-decoration: none;
-    color: rgb(199, 192, 192); /* Link text color */
-    transition: color 0.3s; /* Smooth color transition */
-}
-
-
-/* Social media icons */
-.social-icons a {
-    color: white; /* Icon color */
-    text-decoration: none;
-    margin-right: 20px; /* Adjust spacing between icons */
-    font-size: 24px; /* Icon size */
-}
-
-/* Footer address */
-.footer-address {
-    font-size: 18px;
     color: rgb(199, 192, 192); 
+    transition: color 0.3s; 
 }
-body {
-    background-image: url("/static/Slike/2.jpg"); 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+.footer-social-links a {
+    text-decoration: none;
+    color: rgb(199, 192, 192); 
+    transition: color 0.3s; 
 }
 
-/* Style for Kontakt page */
+.footer-social-links a:hover {
+    transform: scale(1.1);
+}
+
+.footer-social-links .footer-fb:hover {
+    color: #007bff;
+}
+
+.footer-social-links .footer-ig:hover{
+    color: #bc34ce;
+}
+
+.footer-social-links .footer-tt:hover {
+    color: #090430;
+}
+
+/* KONTAKT.HTML */
 .kontakt-container {
     width: 80%;
     margin: 0 auto;
@@ -254,8 +255,18 @@ body {
     color: #333;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
     background-color: rgba(0, 0, 0, 0.8); 
-    border: 1px solid #f09c2f;
+    border: 2px solid #f09c2f;
+    box-shadow: 0 0 10px #f09c2f;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     border-radius: 8px;
+}
+.kontakt-container:hover {
+    transform: scale(1.005);
+    box-shadow: 0 0 20px #f09c2f;
+}
+
+.kontakt-container:focus-within {
+    box-shadow: 0 0 0 2px #f09c2f;
 }
 
 #kontakt.lead {
@@ -264,9 +275,9 @@ body {
 }
 
 .business-card, .google-maps-responsive, .delovni-cas, .social-media {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Consistent shadow for all cards */
-    margin-bottom: 10px; /* Space between vertically stacked items */
-    border-radius: 8px; /* Consistent border radius */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); 
+    margin-bottom: 10px; 
+    border-radius: 8px; 
 }
 
 .business-card, .google-maps-responsive, .equal-height {
@@ -276,10 +287,11 @@ body {
 }
 
 .business-card {
-    background: #f8f6f6;
+    background-color: rgba(82, 75, 67, 0.6); 
     padding: 25px;
+    padding-bottom: 70px;
     transition: transform 0.3s, box-shadow 0.3s;
-    border: 2px solid #464444;
+    border: 1px solid #f09c2f;
 }
 
 .google-maps-responsive:hover, 
@@ -297,34 +309,35 @@ body {
     border-radius: 50%; 
     margin: 0 auto 20px; 
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    border: 1px solid #f09c2f;
 }
   
 .contact-info {
     text-align: center;
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: rgba(82, 75, 67, 0.6);;
     border-radius: 8px;
-    border: 1px solid #464444;
+    border: 1px solid #f09c2f;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .info-label {
     font-weight: bold;
-    color: #333;
+    color: #cec6c6;
 }
 
 .info-detail {
     font-weight: normal;
-    color: #555;
+    color: #e7a324;
     margin-left: 10px;
     word-wrap: break-word; 
 }
 
 .google-maps-responsive {
-    background-color: #f2f2f2;
+    background-color: rgba(82, 75, 67, 0.6);
     position: relative;
     padding-top: 30%;
-    border: 2px solid #464444;
+    border: 1px solid #f09c2f;
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
     align-items: center;
@@ -341,13 +354,13 @@ body {
 } 
 
 .delovni-cas {
-    background-color: #f2f2f2;
+    background-color: rgba(82, 75, 67, 0.6);
     padding: 20px;
-    border: 2px solid #464444;
+    border: 1px solid #f09c2f;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 .delovni-cas h3 {
-    color: #3f3b3b;
+    color: #e7a324;
     margin-bottom: 0.5em;
     font-weight: 600; 
     text-align: center;
@@ -356,18 +369,19 @@ body {
     margin: 0;
     padding: 5px 0;
     text-align: center;
+    color: #e7a324;
 }
 
 .delovni-cas-text {
     font-weight: bold;
-    color: #555;
+    color: #cec6c6;
     text-align: center;
 }
 
 .social-media {
-    background-color: #f2f2f2;
+    background-color: rgba(82, 75, 67, 0.6);
     padding: 20px;
-    border: 2px solid #464444;
+    border: 1px solid #f09c2f;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -383,9 +397,8 @@ body {
 }
 
 .social-media h3 {
-    margin-bottom: 45px;
-    margin-top: 15px;
-    color: #333;
+    margin-bottom: 55px;
+    color: #e7a324;
     font-weight: 600;
 }
 
@@ -397,18 +410,38 @@ body {
 }
 
 .social-icon {
-    color: #555;
+    color: #949494;
     margin: 0 15px;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-icon:hover {
+.social-fb:hover {
     color: #007bff;
     transform: scale(1.1);
 }
 
-.social-icon:focus, .social-icon:active {
+.social-fb:focus, .social-fb:active {
     outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+.social-ig:hover {
+    color: #bc34ce;
+    transform: scale(1.1);
+}
+
+.social-ig:focus, .social-ig:active {
+    outline: 2px solid #bc34ce;
+    outline-offset: 2px;
+}
+
+.social-tt:hover {
+    color: #090430;
+    transform: scale(1.1);
+}
+
+.social-tt:focus, .social-tt:active {
+    outline: 2px solid #090430;
     outline-offset: 2px;
 }
 
@@ -422,6 +455,7 @@ body {
     border-radius: 8px;
     margin-bottom: 30px;
     border: 1px solid #f09c2f;
+    box-shadow: 0 0 10px #f09c2f;
 }
 
 .gallery-description {
@@ -437,7 +471,7 @@ body {
 
 .gallery-description p {
     font-size: 1rem;
-    color: #fafafa; /* Ensuring good readability */
+    color: #fafafa; 
     margin-top: 10px;
 }
 .car-gallery h2 {
@@ -563,7 +597,6 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Base styles for the gallery container */
 .galerija2-container {
     background-color: rgba(0, 0, 0, 0.8); 
     border-radius: 10px;
@@ -572,6 +605,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #f09c2f;
+    box-shadow: 0 0 10px #f09c2f;
     border-radius: 8px;
 }
 

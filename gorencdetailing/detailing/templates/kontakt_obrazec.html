@@ -43,9 +43,9 @@
   <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-            <label for="{{ obrazec.storitev.id_for_label }}">Storitve, ki bi jih želeli:</label>
+            <label for="{{ obrazec.storitev.id_for_label }}">Storitev, ki bi želeli:</label>
             <select name="{{ obrazec.storitev.html_name }}" id="{{ obrazec.storitev.id_for_label }}" class="form-control">
-                <option value="" selected>-- Izberite storitev --</option>
+                <option value="" disabled selected>-- Izberite storitev --</option>
                 {% for choice in obrazec.storitev.field.queryset %}
                     <option value="{{ choice.pk }}">{{ choice }}</option>
                 {% endfor %}
@@ -72,27 +72,45 @@
 {% block extrascripts %}
 <script>
 $(document).ready(function() {
-    // Email Validation
-    $('input[type="email"]').on('input', function() {
-        var email = $(this).val();
+    // Function to validate email
+    function validateEmail(email) {
         var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        if (email.length > 0 && !emailRegex.test(email)) {
-            $(this).css('border-color', 'red');
-        } else {
-            $(this).css('border-color', '#ddd');
-        }
+        return emailRegex.test(email);
+    }
+
+    // Function to validate phone number
+    function validatePhoneNumber(phoneNumber) {
+        var phoneRegex = /^(?:\+386)?[0-9]{9}$/;
+        return phoneRegex.test(phoneNumber);
+    }
+
+    // Validate email on input
+    $('input[type="email"]').on('input', function() {
+        $(this).css('border-color', validateEmail($(this).val()) ? '#f09c2f' : 'red');
     });
 
-    // Phone Number Validation
+    // Validate phone number on input
     $('input[name="telefon"]').on('input', function() {
-        var phoneNumber = $(this).val();
-        var phoneRegex = /^(?:\+386)?[0-9]{9}$/;
-        if (phoneNumber.length > 0 && !phoneRegex.test(phoneNumber)) {
-            $(this).css('border-color', 'red');
+        $(this).css('border-color', validatePhoneNumber($(this).val()) ? '#f09c2f' : 'red');
+    });
+
+    // General input and select validation on change
+    $('input[type="text"], input[type="email"], textarea, select').on('change', function() {
+        // Check if input/select is not empty and is valid
+        var isValid = true;
+        var value = $(this).val();
+
+        if ($(this).is('input[type="email"]')) {
+            isValid = validateEmail(value);
+        } else if ($(this).is('input[name="telefon"]')) {
+            isValid = validatePhoneNumber(value);
         } else {
-            $(this).css('border-color', '#ddd');
+            isValid = value !== '';
         }
+
+        $(this).css('border-color', isValid ? '#f09c2f' : 'red');
     });
 });
 </script>
+    
 {% endblock %}

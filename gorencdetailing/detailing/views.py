@@ -4,6 +4,9 @@ from .models import Storitev, Priporočila, Kontakt, KontaktStranka, Avto, AvtoS
 from .forms import KontaktObrazec
 from django.core.mail import send_mail
 from django.db.models import Avg, Count
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 def domaca_stran_view(request):
     return render(request, 'domaca_stran.html')
@@ -82,24 +85,25 @@ def appointments_view(request):
         sporocilo = request.POST['sporocilo']
         storitev = request.POST.getlist('storitev')
 
-    #    # send an email
-    #     send_mail(
-    #         ime,
-    #         email, 
-    #         telefon,
-    #         avto,
-    #         sporocilo, 
-    #         storitev,
-    #     ['detailing.gorenc@gmail.com'], # na mail
-    #       )
+        # Format the email message
+        message = f"Ime in priimek: {ime}\nE-pošta: {email}\nTelefon: {telefon}\nAvto: {avto}\nStoritev: {', '.join(storitev)}\nSporočilo: {sporocilo}"
+
+        # Send an email
+        send_mail(
+            subject="Nova narocila",
+            message=message,
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=['detailing.gorenc@gmail.com'],
+        )
+        
         return render(request, 'appointments.html', {
-        'ime': ime,
-        'email': email,
-        'telefon': telefon,
-        'avto': avto,
-        'sporocilo': sporocilo, 
-        'storitev': storitev,
-                })
+            'ime': ime,
+            'email': email,
+            'telefon': telefon,
+            'avto': avto,
+            'sporocilo': sporocilo, 
+            'storitev': storitev,
+        })
 
     else:
         return render(request, 'domaca_stran.html', {})

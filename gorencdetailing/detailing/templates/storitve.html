@@ -205,9 +205,42 @@
         font-size: inherit;
         fill: var(--uim-color, currentColor);
     }
+    .btn-yellowish {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 20px;
+      background-color: #f0ad4e; /* Bootstrap's button-warning color as an example */
+      color: #333; /* Dark text for contrast */
+      border: none;
+      box-shadow: 0 2px 4px rgba(240, 173, 78, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-yellowish:hover {
+      background-color: #fec503; /* Brighter yellow for hover */
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(240, 173, 78, 0.6);
+    }
+    
+    /* Added cool pulse animation for the button */
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(240, 173, 78, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(240, 173, 78, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(240, 173, 78, 0);
+      }
+    }
+    
+    .btn-yellowish:focus {
+      animation: pulse 1s infinite;
+    }
     
 </style>
-<div class="container" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 8px; border: 1px solid #f09c2f">
+<div class="container" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 8px; border: 1px solid #f09c2f; box-shadow: 0 0 10px #f09c2f;">
   <div class="row">
     {% for storitev in storitve %}
     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
@@ -228,7 +261,7 @@
         </div>
       </div><!--end col-->
       {% endfor %}
-      <a href="{% url 'kontakt_obrazec' %}" class="btn btn-dark btn-lg mt-4 mb-3 mx-auto"><strong>Naročite se zdaj!</strong></a>
+      <a href="{% url 'kontakt_obrazec' %}" class="btn btn-secondary btn-lg mt-4 mb-3 mx-auto btn-yellowish"><strong>Naročite se zdaj!</strong></a>
   </div><!--end row-->
 </div>
 {% endblock %}
