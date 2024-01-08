@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qk)aqjgz^qbq1yrzf_bw#yf(!hbdmk$!c6od7c^29x2pz47d5$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -136,3 +136,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'detailing.gorenc@gmail.com'
 EMAIL_HOST_PASSWORD = 'xhth lwgo mlya glid'
+
+import django_heroku
+django_heroku.settings(locals())
