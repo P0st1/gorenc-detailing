@@ -3,34 +3,68 @@
 {% load static %}
 <div class="kontakt-container mt-5">
     <div class="row">
-        <div class="col-md-6">
-            <!-- Business card section on the left -->
+        <!-- Business Card Column -->
+        <div class="col-lg-6 mb-4">
             <div class="business-card">
                 <img src="{% static 'pictures/logo.jpg' %}" alt="Company Image" class="img-fluid">
-                <h2 class="mb-3">{{ kontakt.ime_podjetja }}</h2>
-                <p class="lead">Naslov: {{ kontakt.naslov }}</p>
-                <p class="lead">Telefonska številka: {{ kontakt.telefon }}</p>
-                <p class="lead">Email: {{ kontakt.email }}</p>
+                <div class="contact-info">
+                    <p class="lead"><span class="info-label">Naslov:</span> <span class="info-detail">{{ kontakt.naslov }}</span></p>
+                    <p class="lead"><span class="info-label">Telefonska številka:</span> <span class="info-detail">{{ kontakt.telefon }}</span></p>
+                    <p class="lead"><span class="info-label">Email:</span> <span class="info-detail">{{ kontakt.email }}</span></p>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <!-- Google Maps section on the right -->
-            <div class="google-maps-responsive">
-                <!-- Embed the Google Maps iframe here -->
-                {{ kontakt.google_maps_embed | safe }}
-            </div>
-            <div class="delovni-cas">
-                <h3 class="mb-3">Delovni čas</h3>
-                <p><span class="delovni-cas-text">Ponedeljek:</span> {{ kontakt.delovni_cas }}</p>
-                <p><span class="delovni-cas-text">Torek:</span> {{ kontakt.delovni_cas }}</p>
-                <p><span class="delovni-cas-text">Sreda:</span> {{ kontakt.delovni_cas }}</p>
-                <p><span class="delovni-cas-text">Četrtek:</span> {{ kontakt.delovni_cas }}</p>
-                <p><span class="delovni-cas-text">Petek:</span> {{ kontakt.delovni_cas }}</p>
-                <p><span class="delovni-cas-text">Sobota in nedelja:</span> Zaprto </p>
+
+        <!-- Right Side Column for Google Maps, Delovni Čas, and Social Media -->
+        <div class="col-lg-6 equal-page">
+            <div class="row">
+                <!-- Google Maps Box -->
+                <div class="col-12 mb-2">
+                    <div class="google-maps-responsive">
+                        {{ kontakt.google_maps_embed | safe }}
+                    </div>
+                </div>
+
+                <!-- Delovni Čas and Social Media Row -->
+                <div class="col-12">
+                    <div class="row">
+                        <!-- Delovni Čas Column -->
+                        <div class="col-md-6 mb-2">
+                            <div class="delovni-cas equal-height">
+                                <h3 class="mb-3">Delovni čas</h3>
+                                <p><span class="delovni-cas-text">Ponedeljek:</span> {{ kontakt.delovni_cas }}</p>
+                                <p><span class="delovni-cas-text">Torek:</span> {{ kontakt.delovni_cas }}</p>
+                                <p><span class="delovni-cas-text">Sreda:</span> {{ kontakt.delovni_cas }}</p>
+                                <p><span class="delovni-cas-text">Četrtek:</span> {{ kontakt.delovni_cas }}</p>
+                                <p><span class="delovni-cas-text">Petek:</span> {{ kontakt.delovni_cas }}</p>
+                                <p><span class="delovni-cas-text">Sobota in nedelja:</span> Zaprto </p>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Column -->
+                        <div class="col-md-6 mb-2">
+                            <div class="social-media equal-height">
+                                <h3>Poiščite nas na socialnih omrežjih!</h3>
+                                <div class="social-media-links">
+                                    <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@gorenc.detailing" target="_blank" class="social-icon">
+                                        <i class="fab fa-tiktok"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/gorenc.detailing/" target="_blank" class="social-icon">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
-
+{% block extrascripts %}
+{% endblock %}
 

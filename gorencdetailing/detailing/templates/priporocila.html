@@ -1,1 +1,92 @@
 {% extends "base.html" %}
+{% block content %}
+{% load static %}  
+<link rel="stylesheet" type="text/css" href="{% static 'css/priporocila.css' %}">
+<div class="priporocila-container">
+  {% for message in messages %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+  {% endfor %}
+  <div class="gallery-description text-center mb-4">
+    <h2 class="font-weight-bold mb-3">Mnenja naših strank</h2>
+  </div>
+  <div class="row">
+    <!-- Left side: New Priporocilo Form -->
+    <div class="col-md-6">
+      <form method="post" action="{% url 'priporocila' %}" class="new-priporocilo-form">
+        {% csrf_token %}
+        <input type="text" name="user_name" placeholder="Avtor" class="form-control" required>
+        <textarea name="testimonial" placeholder="Vaše mnenje" class="form-control" required></textarea>
+        <select name="type_of_service" id="serviceField" class="form-control" required>
+          <option value="" selected>-- Izberite storitev --</option>
+          {% for storitev in storitve %}
+          <option value="{{ storitev.id }}">{{ storitev.naslov }}</option>
+          {% endfor %}
+        </select>
+        <input type="date" id="datumStoritveField" name="datum_storitve" class="form-control date-input" required>
+          <div class="rating">
+            {% for star in "12345" %}
+              <input id="star{{ star }}" name="rating" type="radio" value="{{ star }}" class="star-rating-input"/>
+              <label for="star{{ star }}" class="star-rating">&#9733;</label>
+            {% endfor %}
+          </div>              
+        <button type="submit" class="btn btn-primary submit-button">Oddaj</button>
+      </form>
+    </div>
+
+    <!-- Right side: Carousel for existing Priporocila -->
+    <div class="col-md-6">
+      <div id="priporocilaCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+          {% for priporocilo in priporocila %}
+          <div class="carousel-item{% if forloop.first %} active{% endif %}">
+            <div class="testimonial">
+              <h3>{{ priporocilo.user_name }}</h3>
+              <p>{{ priporocilo.testimonial }}</p>
+              <p>Datum storitve: {{ priporocilo.datum_storitve|date:"d.m.Y" }}</p>
+              <p>Vrsta storitve: {{ priporocilo.type_of_service }}</p>
+              <div class="rating">
+                  {% for i in "12345" %}
+                  <span class="star{% if forloop.counter <= priporocilo.rating %} filled{% endif %}">★</span>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#priporocilaCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#priporocilaCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <p class="stats-container">
+    <span class="stats-item">
+      Povprečna ocena:
+      <span class="stats">{{ avg_rating|default:"Ni priporočil za ocenjevanje" }}</span>
+    </span>
+    <span class="stats-item">
+      Število mnenj:
+      <span class="stats">{{ testimonial_count }}</span>
+    </span>
+  </p>
+</div>
+{% endblock %}
+{% block extrascripts %}
+<script>
+  document.querySelectorAll('.star-rating-input').forEach(input => {
+    input.addEventListener('change', () => {
+      input.checked = true;
+      document.querySelectorAll('.star-rating').forEach(star => {
+        star.style.color = star.htmlFor <= input.id ? '#e67e22' : '#ddd';
+      });
+    });
+  });
+</script>
+{% endblock %}

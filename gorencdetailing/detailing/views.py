@@ -3,6 +3,7 @@ from django.contrib import messages
 from .models import Storitev, Priporočila, Kontakt, KontaktStranka, Avto, AvtoSlike, CarLineSlike
 from .forms import KontaktObrazec
 from django.core.mail import send_mail
+from django.db.models import Avg, Count
 
 def domaca_stran_view(request):
     return render(request, 'domaca_stran.html')
@@ -13,17 +14,46 @@ def storitve_view(request):
     return render(request, 'storitve.html', {'active_page': active_page, 'storitve': storitve})
 
 def priporocila_view(request):
+    context={}
+    if request.method == 'POST':
+        user_name = request.POST.get('user_name')
+        testimonial = request.POST.get('testimonial')
+        rating = request.POST.get('rating')
+        datum_storitve = request.POST.get('datum_storitve')
+        type_of_service_id = request.POST.get('type_of_service')
+
+        type_of_service = get_object_or_404(Storitev, id=type_of_service_id)
+
+        new_priporocilo = Priporočila(
+            user_name=user_name,
+            testimonial=testimonial,
+            rating=rating,
+            datum_storitve=datum_storitve,
+            type_of_service=type_of_service  
+        )
+        new_priporocilo.save()
+        messages.success(request, 'Vaše mnenje je bilo uspešno poslano. Hvala!')
+        return redirect('priporocila') 
+    storitve = Storitev.objects.all()
     active_page = 'priporocila'
     priporocila = Priporočila.objects.all()
-    return render(request, 'priporocila.html', {'active_page': active_page, 'priporocila': priporocila})
+    avg_rating = Priporočila.objects.aggregate(Avg('rating'))['rating__avg']
+    testimonial_count = Priporočila.objects.count()
 
+    context = {
+        'active_page': active_page,
+        'priporocila': priporocila,
+        'storitve': storitve,
+        'avg_rating': avg_rating,
+        'testimonial_count': testimonial_count,
+    }
+    return render(request, 'priporocila.html', context)
 
 def avto_slideshow(request):
+    active_page = 'galerija'
     avti = Avto.objects.prefetch_related('avtoslike_set')  
     car_line_slike = CarLineSlike.objects.all()
-    return render(request, 'galerija_slik.html', {'avti': avti, 'car_line_slike': car_line_slike})
-
-
+    return render(request, 'galerija_slik.html', {'active_page': active_page, 'avti': avti, 'car_line_slike': car_line_slike})
 
 def kontakt_view(request):
     active_page = 'kontakt'
@@ -39,8 +69,8 @@ def kontakt_obrazec_view(request):
             return redirect('domaca_stran')
     else:
         obrazec = KontaktObrazec(initial={'ime': '', 'email': '', 'telefonska_stevilka': '', 'vas_avto': '', 'storitev': '', 'sporocilo': ''})
-    
-    return render(request, 'kontakt_obrazec.html', {'obrazec': obrazec})
+    active_page = 'kontakt_obrazec'
+    return render(request, 'kontakt_obrazec.html', {'obrazec': obrazec, 'active_page': active_page})
 
 
 def appointments_view(request):

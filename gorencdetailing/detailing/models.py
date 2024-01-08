@@ -10,14 +10,15 @@ class Storitev(models.Model):
         return self.naslov
     
 class Priporočila(models.Model):
-    avtor = models.CharField(max_length=100)
-    mnenje = models.TextField()
+    user_name = models.CharField(max_length=100)
+    testimonial = models.TextField()
+    rating = models.IntegerField(default=5)
+    datum_storitve = models.DateField(verbose_name='Datum storitve', null=True)
+    type_of_service = models.ForeignKey(Storitev, on_delete=models.CASCADE, null=True, verbose_name='Vrsta storitve')
 
     def __str__(self):
-        return f"Priporočilo od {self.author}"
+        return f"Priporočilo od {self.user_name}"
     
-
-
 class Avto(models.Model):
     znamka = models.CharField(max_length=100)
     model = models.CharField(max_length=100)

@@ -2,11 +2,17 @@
 
 {% block content %}
 <div class="galerija-container">
+  <div class="gallery-description text-center mb-4">
+    <h2 class="font-weight-bold mb-3">NAŠE DELO GOVORI ZASE</h2>
+    <p>
+      Spodaj je predstavitev nekaterih avtomobilov, na katerih smo imeli priložnost delati. 
+    </p>
+  </div>
   <div class="row">
     {% for avto in avti %}
     <div class="col-md-4 mb-4">
       <div class="car-gallery">
-        <h2 class="font-weight-bold text-dark">{{ avto.znamka }} {{ avto.model }}</h2>
+        <h2 class="font-weight-bold">{{ avto.znamka }} {{ avto.model }}</h2>
         <div id="carousel-{{ avto.id }}" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             {% for slika in avto.avtoslike_set.all %}
@@ -20,9 +26,6 @@
                 <div class="img-wrapper">
                   <img src="{{ slika.slika.url }}" alt="{{ avto.znamka }} {{ avto.model }}" class="img-fluid">
                 </div>              
-                <div class="carousel-caption">
-                  <!-- You can add any additional information or description here -->
-                </div>
               </a>
             </div>
             {% endfor %}
@@ -41,30 +44,28 @@
     {% endfor %}
   </div>
 </div>
-<div class="galerija2-container bg-dark text-light p-4">
-  <div class="text-center">
+
+<!-- CarLineSlike -->
+<div class="galerija2-container">
+  <div class="car-gallery2">
+    <div class="text-center mb-4">
       <h1 class="display-4">Sodelujemo tudi z avto hišo CAR LINE!</h1>
+      <p class="car-line-description">
+        V Gorenc Detailing smo zavezani odličnosti, kar se odraža v našem partnerstvu z avto hišo Car Line. 
+        Naše skupno poslanstvo je zagotavljanje vrhunske kakovosti in storitev. Kot specialisti za detailing avtomobilov poskrbimo, da vsako vozilo Car Line zasije v popolni podobi.
+        Za ogled ponudbe Car Line, <a href="https://www.carline.si/" target="_blank">kliknite tukaj</a>.
+      </p>  
   </div>
 
-  <!-- CarLineSlike Carousel -->
-  <div id="carouselCarLine" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-          {% for car_line_slika in car_line_slike %}
-          <div class="carousel-item{% if forloop.first %} active{% endif %}">
-            <img src="{{ car_line_slika.car_line_slika.url }}" class="d-block w-100 img-fluid" style="max-width: 50%; height:auto">
-          </div>
-          {% endfor %}
-      </div>
-      <a class="carousel-control-prev" href="#carouselCarLine" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselCarLine" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-      </a>
+  <div class="row">
+        {% for car_line_slika in car_line_slike %}
+        <div class="col-md-4 gallery-item">
+          <img src="{{ car_line_slika.car_line_slika.url }}" class="img-fluid gallery-image no-pointer" alt="Car Line Image">
+        </div>
+        {% endfor %}
   </div>
 </div>
+
 {% endblock %}
 
 {% block extrascripts %}

@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="form-container">
-<h1>Kontaktirajte nas!</h1>
-{% for message in messages %}
+
+<div id="kontakt-form-container">
+<div class="gallery-description text-center">
+    <h2 class="font-weight-bold">Kontaktirajte nas!</h2>
+</div>
+    {% for message in messages %}
         <div class="alert alert-success">
             {{ message }}
         </div>
@@ -13,13 +16,13 @@
       <div class="col-md-6">
           <div class="form-group">
               <label for="{{ obrazec.ime.id_for_label }}">Ime in priimek:</label>
-              <input type="text" name="ime" id="{{ obrazec.ime.id_for_label }}" value="{{ obrazec.ime.value }}">
-          </div>
+              <input type="text" name="ime" id="{{ obrazec.ime.id_for_label }}" value="{{ obrazec.ime.value }}" placeholder="Ime in priimek" required>
+          </div> 
       </div>
       <div class="col-md-6">
           <div class="form-group">
               <label for="{{ obrazec.email.id_for_label }}">Vaša e-pošta:</label>
-              <input type="email" name="email" id="{{ obrazec.email.id_for_label }}" value="{{ obrazec.email.value }}">
+              <input type="email" name="email" id="{{ obrazec.email.id_for_label }}" value="{{ obrazec.email.value }}" placeholder="E-pošta" required>
           </div>
       </div>
   </div>
@@ -27,22 +30,27 @@
       <div class="col-md-6">
           <div class="form-group">
               <label for="{{ obrazec.telefon_for_label }}">Telefonska številka:</label>
-              <input type="text" name="telefon" id="{{ obrazec.telefon_for_label }}" value="{{ obrazec.telefonska_stevilka.value }}">
+              <input type="text" name="telefon" id="{{ obrazec.telefon_for_label }}" value="{{ obrazec.telefonska_stevilka.value }}" placeholder="Telefon" required>
           </div>
       </div>
       <div class="col-md-6">
           <div class="form-group">
               <label for="{{ obrazec.vas_avto.id_for_label }}">Znamka in model vozila:</label>
-              <input type="text" name="avto" id="{{ obrazec.vas_avto.id_for_label }}" value="{{ obrazec.vas_avto.value }}">
+              <input type="text" name="avto" id="{{ obrazec.vas_avto.id_for_label }}" value="{{ obrazec.vas_avto.value }}" placeholder="Model vozila" required>
           </div>
       </div>
   </div>
   <div class="row">
       <div class="col-md-12">
-          <div class="form-group">
-              <label for="{{ obrazec.storitev.id_for_label }}">Storitve, ki bi jih želeli:</label>
-              {{ obrazec.storitev }}
-          </div>
+        <div class="form-group">
+            <label for="{{ obrazec.storitev.id_for_label }}">Storitve, ki bi jih želeli:</label>
+            <select name="{{ obrazec.storitev.html_name }}" id="{{ obrazec.storitev.id_for_label }}" class="form-control">
+                <option value="" selected>-- Izberite storitev --</option>
+                {% for choice in obrazec.storitev.field.queryset %}
+                    <option value="{{ choice.pk }}">{{ choice }}</option>
+                {% endfor %}
+            </select>
+        </div>        
       </div>
   </div>
   <div class="row">
@@ -63,11 +71,28 @@
 {% endblock %}
 {% block extrascripts %}
 <script>
-  $(document).ready(function() {
-    $('#id_storitve').select2({
-      placeholder: 'Izberite storitve',
-      allowClear: true,
+$(document).ready(function() {
+    // Email Validation
+    $('input[type="email"]').on('input', function() {
+        var email = $(this).val();
+        var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (email.length > 0 && !emailRegex.test(email)) {
+            $(this).css('border-color', 'red');
+        } else {
+            $(this).css('border-color', '#ddd');
+        }
     });
-  });
+
+    // Phone Number Validation
+    $('input[name="telefon"]').on('input', function() {
+        var phoneNumber = $(this).val();
+        var phoneRegex = /^(?:\+386)?[0-9]{9}$/;
+        if (phoneNumber.length > 0 && !phoneRegex.test(phoneNumber)) {
+            $(this).css('border-color', 'red');
+        } else {
+            $(this).css('border-color', '#ddd');
+        }
+    });
+});
 </script>
 {% endblock %}

@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet">
         {% load static %}  
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
         <title>Gorenc Detailing</title>
@@ -33,20 +32,18 @@
                     <li class="nav-item {% if active_page == 'kontakt' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'kontakt' %}">Kontakt</a>
                     </li>              
-                    <li class="nav-item">
+                    <li class="nav-item {% if active_page == 'kontakt_obrazec' %}active{% endif %}">
                         <a class="nav-link btn btn-outline-secondary" href="{% url 'kontakt_obrazec' %}">Naročite se zdaj</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        
     </header>
     
     <main>
         {% block content %}
         {% endblock %}
     </main>
-    
     
     <footer class="bg-dark text-white py-5">
         <div class="container">
@@ -95,7 +92,6 @@
 <!-- Include FancyBox JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
 {% block extrascripts %}
 {% endblock %}
 </body>

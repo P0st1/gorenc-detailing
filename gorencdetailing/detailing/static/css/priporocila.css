@@ -1,0 +1,193 @@
+/* PRIPOROCILA.HTML */
+.priporocila-container {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8); 
+  color: #fff;
+  border: 1px solid #f09c2f;
+  border-radius: 8px;
+}
+.stats-container {
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.stats-item {
+  margin-right: 15px;
+  font-weight: bold;
+  color: #e7e5e5; 
+}
+
+.stats {
+  color: #e08d21; /
+}
+
+/* Form Styles */
+.new-priporocilo-form {
+  background: #333; 
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.new-priporocilo-form .form-control {
+  background: #222; 
+  border: none;
+  margin-bottom: 1rem;
+  color: #fff; 
+}
+
+.new-priporocilo-form .form-control::placeholder {
+  color: #ddd; 
+}
+
+.new-priporocilo-form .btn-primary {
+  background-color: #e67e22; 
+  display: block;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-priporocilo-form .btn-primary:hover {
+  background-color: #d35400; 
+}
+
+.date-input {
+  width: 50%; 
+  display: block;
+}
+
+/* Carousel Styles */
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.carousel-item {
+  transition: transform 0.5s ease-in-out;
+  opacity: 0; /* Hide all items by default */
+  display: none; /* Don't display non-active items */
+  height: auto;
+  margin: 15px;
+  align-items: center; /* Center content vertically */
+  justify-content: center;
+}
+
+.carousel-item.active {
+  display: block; /* Display the active item */
+  opacity: 1; /* Show the active item */
+}
+
+.testimonial {
+  background: #262626; 
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #e67e22; 
+  border-radius: 4px;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial h3 {
+  color: #e67e22; 
+}
+
+.rating .star {
+  color: #5c5a59; 
+  margin-right: 0.25rem;
+}
+
+.rating .star.filled {
+  color: #f39c12; 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-size: 100%, 100%;
+  height: 3rem;
+  width: 3rem;
+  outline: none;
+  background-image: none;
+}
+.carousel-control-prev, .carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev-icon {
+  border: 1px solid #e67e22;
+  border-width: 0 3px 3px 0;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.carousel-control-next-icon {
+  border: 1px solid #e67e22;
+  border-width: 0 3px 3px 0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  filter: brightness(1.1);
+}
+
+.rating {
+  display: inline-block; 
+}
+  
+.star-rating-input {
+  display: none; 
+}
+  
+.star-rating {
+  cursor: pointer;
+  font-size: 2rem; /* Size of the stars */
+  color: #ddd; /* Default star color */
+  transition: color 0.2s; 
+}
+
+/* Hover effect */
+.star-rating:hover,
+.star-rating:hover ~ .star-rating,
+.star-rating-input:hover ~ .star-rating,
+.star-rating-input:checked ~ .star-rating:hover,
+.star-rating-input:checked ~ .star-rating:hover ~ .star-rating {
+  color: #e67e22; /* Highlight color for hovered stars */
+}
+
+/* Remove color for stars after the hovered one when not checked */
+.star-rating:hover ~ .star-rating-input:not(:checked) ~ .star-rating {
+  color: #ddd;
+}
+
+/* Checked effect */
+.star-rating-input:checked ~ .star-rating,
+.star-rating-input:checked ~ .star-rating ~ .star-rating {
+  color: #e67e22; /* Highlight color for selected stars */
+}
+
+/* Make sure stars after the checked one are not highlighted */
+.star-rating-input:checked ~ .star-rating ~ .star-rating-input:not(:checked) ~ .star-rating {
+  color: #ddd;
+}
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .priporocila-container {
+      padding: 1rem;
+    }
+  
+    .new-priporocilo-form, .carousel-inner {
+      margin-top: 1rem;
+    }
+  
+    .testimonial {
+      margin-bottom: 0.5rem;
+    }
+  }
