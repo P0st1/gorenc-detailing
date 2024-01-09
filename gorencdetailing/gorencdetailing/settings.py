@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import configparser
 from pathlib import Path
+import django_heroku
+import dj_database_url
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -118,7 +120,7 @@ USE_TZ = True
 
 import os
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR/'assets'
+# STATIC_ROOT = BASE_DIR/'assets'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'detailing', 'static'),]
 
@@ -136,3 +138,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'detailing.gorenc@gmail.com'
 EMAIL_HOST_PASSWORD = 'xhth lwgo mlya glid'
+
+django_heroku.settings(locals())
