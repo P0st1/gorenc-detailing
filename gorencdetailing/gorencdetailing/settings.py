@@ -13,6 +13,7 @@ from pathlib import Path
 import django_heroku
 import dj_database_url
 from decouple import config
+from storages.backends.s3boto3 import S3Boto3Storage
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qk)aqjgz^qbq1yrzf_bw#yf(!hbdmk$!c6od7c^29x2pz47d5$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['pacific-spire-52679-e244f521195b.herokuapp.com']
 
@@ -39,12 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'detailing'
+    'detailing',
+    'storages'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -144,5 +145,24 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'detailing.gorenc@gmail.com'
 EMAIL_HOST_PASSWORD = 'xhth lwgo mlya glid'
+
+# AWS S3 settings
+AWS_ACCESS_KEY_ID = 'AKIA3FLDXUXVZHDPBHQJ'  # Use the access key of the IAM user
+AWS_SECRET_ACCESS_KEY = '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'  # Use the secret key of the IAM user
+AWS_STORAGE_BUCKET_NAME = 'my-django-gorenc-detailing'  # Use the bucket name you created in Step 1
+AWS_S3_REGION_NAME = 'eu-central-1'  # Use the region name you chose for the bucket (e.g., 'us-east-1')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = False
+DEFAULT_FILE_STORAGE = 'gorencdetailing.storage_backends.MediaStorage'  
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
 
 django_heroku.settings(locals())
