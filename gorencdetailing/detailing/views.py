@@ -42,7 +42,15 @@ def priporocila_view(request):
     storitve = Storitev.objects.all()
     active_page = 'priporocila'
     priporocila = Priporočila.objects.all().order_by('?')
-    avg_rating = f"{Priporočila.objects.aggregate(Avg('rating'))['rating__avg']:.2f}"
+    # Calculate average rating
+    avg_result = Priporočila.objects.aggregate(Avg('rating'))
+    avg_rating = avg_result.get('rating__avg')
+
+    # Handle None case
+    if avg_rating is None:
+        avg_rating = "No ratings"  # or any other default value or message
+    else:
+        avg_rating = f"{avg_rating:.2f}"
     testimonial_count = Priporočila.objects.count()
 
     context = {
