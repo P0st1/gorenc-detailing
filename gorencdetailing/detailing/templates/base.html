@@ -14,7 +14,7 @@
     </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark custom-dark">
             <a class="navbar-brand" href="{% url 'domaca_stran' %}">Gorenc Detailing</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
         {% endblock %}
     </main>
     
-    <footer class="bg-dark text-white pt-5 pb-1">
+    <footer class="custom-dark text-white pt-5 pb-1">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-4 footer-links">
@@ -106,6 +106,15 @@
 <!-- Include FancyBox JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XG823G9QZQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XG823G9QZQ');
+</script>
 {% block extrascripts %}
 {% endblock %}
 </body>

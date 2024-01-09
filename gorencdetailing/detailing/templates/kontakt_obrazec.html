@@ -1,16 +1,15 @@
 {% extends "base.html" %}
-{% block content %}
 
-<div id="kontakt-form-container">
-<div class="gallery-description text-center">
-    <h2 class="font-weight-bold">Kontaktirajte nas!</h2>
+{% block content %}
+<div id="kontakt-form-container" class="mt-0 mb-0">
+<div class="gallery-description text-center mb-0">
+    <h2 class="font-weight-bold mb-4">KONTAKTIRAJTE NAS</h2>
+    <p class="intro-text">
+        Za več informacij o naših storitvah ali za rezervacijo termina izpolnite naslednji kontaktni obrazec. 
+    </p>
+    <hr>
 </div>
-    {% for message in messages %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-<form action="{% url 'appointments' %}" method="post" class="container mt-5">
+<form action="{% url 'narocila' %}" method="post" class="container">
   {% csrf_token %}
   <div class="row">
       <div class="col-md-6">
@@ -63,7 +62,7 @@
   </div>
   <div class="row">
       <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Pošlji</button>
+          <button type="submit" class="btn btn-secondary btn-lg mx-auto btn-yellowish"><strong>POŠLJI</strong></button>
       </div>
   </div>
 </form>
@@ -112,5 +111,4 @@ $(document).ready(function() {
     });
 });
 </script>
-    
 {% endblock %}

@@ -1,32 +1,35 @@
 {% extends "base.html" %}
+
 {% block content %}
 {% load static %}
 <style>
     .thank-you-container {
         text-align: center;
-        border: 2px solid #615e5e;
+        border: 3px solid #ffa500;
         padding: 40px;
         border-radius: 15px;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        background: rgba(0, 0, 0, 0.8); 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
         margin-top: 50px;
         background-image: url("/static/Slike/02.png"); 
         background-size: cover; 
-        color: #333;
+        color: #ffa500; 
     }
 
-    .btn-dark {
-        background-color: #333;
-        color: #fff;
+    .btn-orange {
+        background-color: #ffa500; 
+        color: #000; 
         padding: 10px 20px;
         border-radius: 5px;
         text-decoration: none;
         transition: background-color 0.3s, transform 0.3s;
+        border: 2px solid #333; 
     }
 
-    .btn-dark:hover {
-        background-color: #555;
+    .btn-orange:hover {
+        background-color: #e69500; 
         transform: translateY(-2px); 
+        border-color: #555;
     }
 
     @keyframes fadeIn {
@@ -60,12 +63,9 @@
             <div class="thank-you-container">
                 <p class="h2">Hvala za zaupanje, <u>{{ ime }}</u>!</p>
                 <p class="lead">Kontaktirali vas bomo v kratkem.</p>
-                <a href="{% url 'domaca_stran' %}" class="btn btn-dark">Domov</a>
+                <a href="{% url 'domaca_stran' %}" class="btn btn-orange">Domov</a>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
-
-
-

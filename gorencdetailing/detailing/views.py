@@ -11,10 +11,12 @@ from django.core.mail import send_mail
 def domaca_stran_view(request):
     return render(request, 'domaca_stran.html')
 
+
 def storitve_view(request):
     active_page = 'storitve'
     storitve = Storitev.objects.all()
     return render(request, 'storitve.html', {'active_page': active_page, 'storitve': storitve})
+
 
 def priporocila_view(request):
     context={}
@@ -39,8 +41,8 @@ def priporocila_view(request):
         return redirect('priporocila') 
     storitve = Storitev.objects.all()
     active_page = 'priporocila'
-    priporocila = Priporočila.objects.all()
-    avg_rating = Priporočila.objects.aggregate(Avg('rating'))['rating__avg']
+    priporocila = Priporočila.objects.all().order_by('?')
+    avg_rating = f"{Priporočila.objects.aggregate(Avg('rating'))['rating__avg']:.2f}"
     testimonial_count = Priporočila.objects.count()
 
     context = {
@@ -52,16 +54,19 @@ def priporocila_view(request):
     }
     return render(request, 'priporocila.html', context)
 
+
 def avto_slideshow(request):
     active_page = 'galerija'
     avti = Avto.objects.prefetch_related('avtoslike_set')  
     car_line_slike = CarLineSlike.objects.all()
     return render(request, 'galerija_slik.html', {'active_page': active_page, 'avti': avti, 'car_line_slike': car_line_slike})
 
+
 def kontakt_view(request):
     active_page = 'kontakt'
     kontakt = Kontakt.objects.first()  
     return render(request, 'kontakt.html', {'active_page': active_page, 'kontakt': kontakt})
+
 
 def kontakt_obrazec_view(request):
     if request.method == 'POST':
@@ -76,7 +81,7 @@ def kontakt_obrazec_view(request):
     return render(request, 'kontakt_obrazec.html', {'obrazec': obrazec, 'active_page': active_page})
 
 
-def appointments_view(request):
+def narocila_view(request):
     if request.method == "POST":
         ime = request.POST['ime']
         email = request.POST['email']
@@ -85,18 +90,20 @@ def appointments_view(request):
         sporocilo = request.POST['sporocilo']
         storitev = request.POST.getlist('storitev')
 
-        # Format the email message
-        message = f"Ime in priimek: {ime}\nE-pošta: {email}\nTelefon: {telefon}\nAvto: {avto}\nStoritev: {', '.join(storitev)}\nSporočilo: {sporocilo}"
+        # Celo ime storitve namesto ID-ja v imenu
+        storitev_ime = Storitev.objects.filter(id__in=storitev).values_list('naslov', flat=True)
 
-        # Send an email
+        # Format the email message
+        message = f"Ime in priimek: {ime}\nE-pošta: {email}\nTelefon: {telefon}\nAvto: {avto}\nStoritev: {', '.join(storitev_ime)}\nSporočilo: {sporocilo}"
+
         send_mail(
-            subject="Nova narocila",
+            subject="Nova stranka pošilja povpraševanje",
             message=message,
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=['detailing.gorenc@gmail.com'],
         )
         
-        return render(request, 'appointments.html', {
+        return render(request, 'narocila.html', {
             'ime': ime,
             'email': email,
             'telefon': telefon,
@@ -104,6 +111,5 @@ def appointments_view(request):
             'sporocilo': sporocilo, 
             'storitev': storitev,
         })
-
     else:
         return render(request, 'domaca_stran.html', {})

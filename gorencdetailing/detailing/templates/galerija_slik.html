@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="galerija-container">
-  <div class="gallery-description text-center mb-4">
-    <h2 class="font-weight-bold mb-3">NAŠE DELO GOVORI ZASE</h2>
-    <p>
-      Spodaj je predstavitev nekaterih avtomobilov, na katerih smo imeli priložnost delati. 
+<div class="galerija-container" id="galerija-container">
+  <div class="gallery-description text-center mb-3">
+    <h2 class="font-weight-bold mb-4">NAŠE DELO GOVORI ZASE</h2>
+    <p class="intro-text">
+      Spodaj je predstavitev nekaterih avtomobilov, na katerih smo imeli priložnost ustvarjanja izboljšav. 
     </p>
+    <hr>
   </div>
   <div class="row">
     {% for avto in avti %}
@@ -65,11 +66,8 @@
         {% endfor %}
   </div>
 </div>
-
 {% endblock %}
-
 {% block extrascripts %}
-
 <script>
   $(document).ready(function() {
     $("[data-fancybox^='gallery']").fancybox({
