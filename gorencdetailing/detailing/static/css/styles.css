@@ -18,6 +18,12 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+@media (max-width: 768px) {
+    #galerija-container body {
+        background-image: none;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
 
 /* Ensure the main content grows to fill the available space */
 main {
@@ -333,7 +339,8 @@ footer {
   
 .contact-info {
     text-align: center;
-    padding: 20px;
+    margin-top: 30px;
+    padding-top: 8px;
     background-color: rgba(82, 75, 67, 0.6);;
     border-radius: 8px;
     border: 1px solid #f09c2f;
@@ -463,6 +470,23 @@ footer {
     outline: 2px solid #090430;
     outline-offset: 2px;
 }
+@media (max-width: 768px) {
+    .contact-info{
+        padding-left: 20px;
+        padding-right: 20px;
+        flex-direction: column;
+    }
+    .lead {
+        font-size: 10px; 
+      }
+    .kontakt-container:hover,
+    .google-maps-responsive:hover, 
+    .delovni-cas:hover, 
+    .business-card:hover,
+    .social-media:hover{
+        transform: none;
+    }
+}
 
 /* GALERIJA_SLIK.HTML */
 .galerija-container {
@@ -585,6 +609,13 @@ footer {
 .img-wrapper {
     position: relative;
     overflow: hidden;
+}
+
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .img-wrapper img {
@@ -975,7 +1006,7 @@ footer {
   }
   
   .service-wrapper:hover .icon {
-    background: #b98920 !important;
+    background: #534738 !important;
     color: #ffffff !important;
   }
   
@@ -1110,6 +1141,8 @@ footer {
     margin-top: 20px; 
     margin-bottom: 20px; 
   }
+
+
 .new-priporocilo-form{
     padding-top: 10px;
   }
@@ -1370,10 +1403,10 @@ select#serviceField:focus {
     border-top: 4px solid #ffa500;
     border-left: 3px solid #ffa500;
     }
-    .date-input#datumStoritveField {
+    #priporocila-container .date-input#datumStoritveField {
     width: 100%; 
     }
-    .testimonial{
+    #priporocila-container .testimonial{
     width: 100%;
     margin: 0;
     }
@@ -1404,5 +1437,8 @@ select#serviceField:focus {
     }
     #priporocila-container .text-center hr{
     height: 0px;
+    }
+    #priporocila-container .smaller-h2 {
+        font-size: 24px;
     }
 }

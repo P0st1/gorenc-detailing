@@ -24,7 +24,7 @@
             {% for slika in avto.avtoslike_set.all %}
             <div class="carousel-item{% if forloop.first %} active{% endif %}">
               <a href="{{ slika.slika.url }}" data-fancybox="gallery-{{ avto.id }}" data-caption="{{ avto.opis }}">
-                <div class="img-wrapper">
+                <div class="img-wrapper center-image">
                   <img src="{{ slika.slika.url }}" alt="{{ avto.znamka }} {{ avto.model }}" class="img-fluid">
                 </div>              
               </a>

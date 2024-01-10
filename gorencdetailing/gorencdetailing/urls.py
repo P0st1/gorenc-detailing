@@ -22,13 +22,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('gorenc-detailing/', views.domaca_stran_view, name='domaca_stran'),
-    path('storitve/', views.storitve_view, name='storitve'),
-    path('priporocila/', views.priporocila_view, name='priporocila'),
-    path('galerija/', views.avto_slideshow, name='galerija'),
-    path('kontakt/', views.kontakt_view, name='kontakt'),
-    path('kontakt-obrazec/', views.kontakt_obrazec_view, name='kontakt_obrazec'),
-    path('narocila/', views.narocila_view, name='narocila'),
+    path('', views.domaca_stran_view, name='domaca_stran'),
+    path('storitve', views.storitve_view, name='storitve'),
+    path('priporocila', views.priporocila_view, name='priporocila'),
+    path('galerija', views.avto_slideshow, name='galerija'),
+    path('kontakt', views.kontakt_view, name='kontakt'),
+    path('kontaktirajte-nas', views.kontakt_obrazec_view, name='kontakt_obrazec'),
+    path('narocila', views.narocila_view, name='narocila'),
 ]
 
 if settings.DEBUG:

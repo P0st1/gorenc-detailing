@@ -29,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qk)aqjgz^qbq1yrzf_bw#yf(!hbdmk$!c6od7c^29x2pz47d5$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['pacific-spire-52679-e244f521195b.herokuapp.com']
+ALLOWED_HOSTS = ['pacific-spire-52679-e244f521195b.herokuapp.com', 'http://127.0.0.1/', 'www.gorenc-detailing.com', '*']
 
 
 # Application definition
@@ -131,13 +131,13 @@ import os
 STATIC_URL = '/static/'
 # STATIC_ROOT = BASE_DIR/'assets'
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'detailing', 'static'),]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'detailing', 'static'),]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email Settings
@@ -148,23 +148,16 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
-# AWS S3 settings
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'my-django-gorenc-detailing'  # Use the bucket name you created in Step 1
-AWS_S3_REGION_NAME = 'eu-central-1'  # Use the region name you chose for the bucket (e.g., 'us-east-1')
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_DEFAULT_ACL = None
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_FILE_OVERWRITE = False
-DEFAULT_FILE_STORAGE = 'gorencdetailing.storage_backends.MediaStorage'  
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = config('BUCKETEER_AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('BUCKETEER_AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('BUCKETEER_BUCKET_NAME')
+AWS_S3_REGION_NAME = 'us-east-1' 
 STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-django_heroku.settings(locals(), staticfiles=False)
+
+
+django_heroku.settings(locals())

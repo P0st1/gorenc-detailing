@@ -71,15 +71,15 @@
   position: relative;
   z-index: 1;
   margin-bottom: 20px;
-  background-color: #f0ad4e; /* Bootstrap's button-warning color as an example */
-  color: #333; /* Dark text for contrast */
+  background-color: #f0ad4e; 
+  color: #333; 
   border: none;
   box-shadow: 0 2px 4px rgba(240, 173, 78, 0.5);
   transition: all 0.3s ease;
 }
 
 .explore-services:hover {
-  background-color: #fec503; /* Brighter yellow for hover */
+  background-color: #fec503; 
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(240, 173, 78, 0.6);
 }
@@ -99,6 +99,15 @@
 
 .explore-services:focus {
   animation: pulse 1s infinite;
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    animation: none;
+  }
+  .text-animation {
+    animation: none;
+  }
 }
 </style>
 {% for message in messages %}
