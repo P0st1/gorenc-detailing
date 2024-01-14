@@ -29,9 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qk)aqjgz^qbq1yrzf_bw#yf(!hbdmk$!c6od7c^29x2pz47d5$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['pacific-spire-52679-e244f521195b.herokuapp.com', 'http://127.0.0.1/', 'www.gorenc-detailing.com', '*']
+ALLOWED_HOSTS = ['pacific-spire-52679-e244f521195b.herokuapp.com', '127.0.0.1', 'www.gorenc-detailing.com', 'gorenc-detailing.com']
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition

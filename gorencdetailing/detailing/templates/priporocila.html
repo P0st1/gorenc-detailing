@@ -15,8 +15,10 @@
     <h2 class="font-weight-bold smaller-h2">NAPIŠITE VAŠE ALI PA SI OGLEJTE MNENJA OSTALIH STRANK</h2>
   </div>
   <div class="text-center">
-    <p class="intro-text">Prosimo vas napišite vaše mnenje, če ste bili zadovoljni z našimi storitvami.</p>
-    <p class="intro-text">Prav tako, si lahko ogledate tudi mnenja ostalih strank.</p>
+    <div class="intro-text">
+    <p>Prosimo vas napišite vaše mnenje, če ste bili zadovoljni z našimi storitvami.</p>
+    <p>Prav tako, si lahko ogledate tudi mnenja ostalih strank.</p>
+    </div>
     <hr>
   </div>  
   <div class="row">
@@ -32,7 +34,8 @@
           <option value="{{ storitev.id }}">{{ storitev.naslov }}</option>
           {% endfor %}
         </select>
-        <input type="date" id="datumStoritveField" name="datum_storitve" class="form-control date-input" required>
+        <label for="datumStoritveField">Datum storitve:</label>
+        <input type="date" id="datumStoritveField" name="datum_storitve" class="form-control date-input" required title="Vnesite datum storitve">
           <div class="rating">
             {% for star in "12345" %}
               <input id="star{{ star }}" name="rating" type="radio" value="{{ star }}" class="star-rating-input" required/>
@@ -42,51 +45,62 @@
         <button type="submit" class="btn btn-primary submit-button">Oddaj</button>
       </form>
     </div>
-
     <!-- Right side: Carousel for existing Priporocila -->
     <div class="col-md-6">
       <div id="priporocilaCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-        <div class="carousel-inner">
-          {% for priporocilo in priporocila %}
-          <div class="carousel-item{% if forloop.first %} active{% endif %}">
-            <div class="testimonial">
-              <div class="testimonial-header">
-                <h3>{{ priporocilo.user_name }}</h3>
-                <div class="rating">
-                  {% for i in "12345" %}
-                    <span class="star{% if forloop.counter <= priporocilo.rating %} filled{% endif %}">★</span>
-                  {% endfor %}
+        {% if priporocila %}
+          <div class="carousel-inner">
+            {% for priporocilo in priporocila %}
+            <div class="carousel-item{% if forloop.first %} active{% endif %}">
+              <div class="testimonial">
+                <div class="testimonial-header">
+                  <h3>{{ priporocilo.user_name }}</h3>
+                  <div class="rating">
+                    {% for i in "12345" %}
+                      <span class="star{% if forloop.counter <= priporocilo.rating %} filled{% endif %}">★</span>
+                    {% endfor %}
+                  </div>
                 </div>
-              </div>
-              <div class="testimonial-body">
-                <p>{{ priporocilo.testimonial }}</p>
-              </div>
-              <div class="testimonial-footer">
-                <p><strong>Datum storitve:</strong> {{ priporocilo.datum_storitve|date:"d.m.Y" }}</p>
-                <p><strong>Vrsta storitve:</strong> {{ priporocilo.type_of_service }}</p>
-              </div>
-            </div>            
+                <div class="testimonial-body">
+                  <p>{{ priporocilo.testimonial }}</p>
+                </div>
+                <div class="testimonial-footer">
+                  <p><strong>Datum storitve:</strong> {{ priporocilo.datum_storitve|date:"d.m.Y" }}</p>
+                  <p><strong>Vrsta storitve:</strong> {{ priporocilo.type_of_service }}</p>
+                </div>
+              </div>            
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
-        </div>
-        <a class="carousel-control-next" href="#priporocilaCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+          <a class="carousel-control-next" href="#priporocilaCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        {% else %}
+          <!-- Display this when there are no testimonials -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="testimonial">
+                <div class="testimonial-body">
+                  <p>Napišite prvo priporočilo</p>
+                </div>
+              </div>            
+            </div>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
   <p class="stats-container">
     <span class="stats-item">
       Povprečna ocena:
-      <span class="stats">{{ avg_rating|default:"Ni priporočil za ocenjevanje" }}</span>
+      <span class="stats">{{ avg_rating }}</span>
     </span>
     <span class="stats-item">
       Število mnenj:
       <span class="stats">{{ testimonial_count }}</span>
     </span>
   </p>
-</div>
 {% endblock %}
 {% block extrascripts %}
 <script>

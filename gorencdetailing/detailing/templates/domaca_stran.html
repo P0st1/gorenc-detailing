@@ -28,7 +28,9 @@
   box-shadow: 0 0 10px #f09c2f;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   border-radius: 8px;
+  animation: borderAnim 2s infinite;
 }
+
 .logo-container:hover {
   transform: scale(1.005);
   box-shadow: 0 0 20px #f09c2f;
@@ -96,7 +98,17 @@
     box-shadow: 0 0 0 0 rgba(240, 173, 78, 0);
   }
 }
-
+@keyframes borderAnim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(240, 156, 47, 1);
+  }
+  50% { 
+    box-shadow: 0 0 0 7.5px rgba(240, 156, 47, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(240, 156, 47, 0);
+  }
+}
 .explore-services:focus {
   animation: pulse 1s infinite;
 }

@@ -14,14 +14,14 @@ body {
 
 body {
     background-image: url("/static/Slike/2.jpg"); 
+    background-color: rgba(0, 0, 0, 0.9);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 @media (max-width: 768px) {
     #galerija-container body {
-        background-image: none;
-        background-color: rgba(0, 0, 0, 0.8);
+
     }
 }
 
@@ -1037,6 +1037,34 @@ footer {
     box-shadow: 0 2px 4px rgba(240, 173, 78, 0.5);
     transition: all 0.3s ease;
   }
+
+  .price-info {
+    color: #fafafa;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 40%;
+    margin: 0 auto;
+    margin-top: 5px;
+    text-align: center;
+    padding: 5px;
+    padding-right: 3px;
+    padding-left: 3px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(5px); 
+    border: 0.5px solid #dbb385;
+}
+    .contact-link {
+    color: #dbb385;
+    text-decoration: none;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+    .contact-link:hover {
+    color: #e48901;
+    border-bottom: 2px solid #dbb385;
+    text-decoration: none;
+}
   
   #storitve-container .btn-yellowish:hover {
     background-color: #fec503;
@@ -1058,22 +1086,38 @@ footer {
   #storitve-container .btn-yellowish:focus {
     animation: pulse 1s infinite;
   }
-  #storitve-container .intro-text {
-    font-size: 16px; 
-    margin-bottom: 13px; 
+.intro-text {
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-    transition: transform 0.3s ease, color 0.3s ease; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+    font-weight: 300; 
+    max-width: 600px; 
+    margin-left: auto; 
+    margin-right: auto;
+    padding: 10px; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 8px;
+    margin-bottom: 10px;
   }
-  #storitve-container .intro-text:hover {
-    transform: scale(1.03); 
-    color: #ffa500;
-  }
+.intro-text:hover {
+    transform: scale(1.03);
+    color: #e7a324;
+}
+#storitve-container .intro-text p,
+#galerija-container .intro-text p,
+#priporocila-container .intro-text p,
+#kontakt-form-container .intro-text p{
+    margin-bottom: 5px;
+}
+
   @media (max-width: 768px) {
     #storitve-container .intro-text {
       font-size: 14px; 
     }
+    .price-info {
+        max-width: 100%;
   }
+}
   #storitve-container .text-center hr {
     border: 0; 
     height: 2px; 
@@ -1083,10 +1127,7 @@ footer {
   }
   
   /* PRIPOROCILA.HTML */
-#priporocila-container .row {
-    display: flex;
-  }
-  
+
 #priporocila-container .col-md-6 {
     display: flex;
     flex-direction: column;
@@ -1379,6 +1420,7 @@ select#serviceField:focus {
     font-size: 16px;
     text-align: center;
 }
+
 
 .stats-item {
     margin-right: 15px;

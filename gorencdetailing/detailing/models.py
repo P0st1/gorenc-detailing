@@ -3,8 +3,12 @@ from django.db import models
 class Storitev(models.Model):
     naslov = models.CharField(max_length=100)
     opis = models.TextField()
-    cena = models.DecimalField(max_digits=8, decimal_places=2)
+    cena = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
     icon_class = models.CharField(max_length=50, help_text="Add the icon class for this service")
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return self.naslov

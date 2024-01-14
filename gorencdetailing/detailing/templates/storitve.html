@@ -3,12 +3,13 @@
 {% block content %}
 <div id="storitve-container" class="container" style="padding-top: 20px; background-color: rgba(0, 0, 0, 0.8); border-radius: 8px; border: 1px solid #f09c2f; box-shadow: 0 0 10px #f09c2f;">
   <div class="gallery-description text-center mb-1">
-    <h2 class="font-weight-bold">POGLEJTE KATERE STORITVE VAM NUDIMO</h2>
+    <h2 class="font-weight-bold">OGLEJTE SI STORITVE, KI VAM JIH NUDIMO</h2>
   </div>
   <div class="text-center">
-    <p class="intro-text">V našem podjetju vam nudimo veliko izbiro visokokakovostnih storitev, prilagojenih vašim potrebam.</p>
-    <p class="intro-text">Preglejte našo ponudbo in izberite storitve, ki najbolj ustrezajo vašemu avtomobilu.</p>
-    <p class="intro-text">S strokovnim znanjem in izkušnjami zagotavljamo odlične rezultate.</p>
+    <div class="intro-text">
+    <p>Preglejte našo ponudbo in izberite storitev, ki najbolj ustreza vašemu avtomobilu.</p>
+    <p>S strokovnim znanjem in izkušnjami zagotavljamo odlične rezultate.</p></div>
+    <p class="price-info">Za ceno posamezne storitve in ostale informacije nas <a href="{% url 'kontakt_obrazec' %}"  class="contact-link">kontaktirajte</a>!</p>
     <hr>
   </div>  
   <div class="row">
@@ -22,7 +23,7 @@
                 <h5 class="title" style="color: #f09c2f;">{{ storitev.naslov }}</h5>
                 <p class="mt-3 mb-0" style="color: rgb(255, 255, 255);">{{ storitev.opis }}</p>
                 <div class="mt-3">
-                    <span class="text-custom">{{ storitev.cena }} € </span>
+                    <!-- <span class="text-custom">{{ storitev.cena }} € </span> -->
                 </div>
             </div>
             <div class="big-icon h1 text-custom">
